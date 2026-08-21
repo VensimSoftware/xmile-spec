@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  xmile-vensim.nvdl - the same dispatch, but with our own extensions actually checked.
+
+  xmile-vendor.nvdl accepts any foreign namespace without looking at it, which is the
+  right posture towards other vendors' content. This one keeps that for everyone else and
+  routes the Vensim namespace to a schema of our own, so that a typo in our exporter is
+  caught rather than waved through:
+
+      XMILE namespace     ->  xmile-v1.0.xsd, unmodified
+      Vensim namespace    ->  vensim-ext.xsd, ours
+      any other namespace ->  accepted, unvalidated
+
+  This is the arrangement referred to in section 1 of the TC proposal as the answer
+  available to a vendor today: a stricter file of its own - "XMILE, plus these few
+  things" - with no fork of the published schema and no cooperation needed from anyone.
+
+  Note the consequence for how vensim-ext.xsd has to be written. NVDL hands each split
+  section to its validator as a document in its own right, so a <vensim:netflow> subtree
+  arrives with vensim:netflow as the ROOT element. Every extension element therefore has
+  to be declared globally, and the schema is a flat list rather than a structure. It also
+  means the vendor schema cannot see, and so cannot constrain, where in the XMILE
+  document its element appeared. NVDL's <attach> action exists to soften that; it is
+  beyond what this example needs.
+
+  Run:  java -jar jing.jar -n xmile-vensim.nvdl model.xmile
+
+  UNTESTED - see the note in xmile-vendor.nvdl.
+
+-->
+<rules xmlns="http://purl.oclc.org/dsdl/nvdl/ns/structure/1.0" startMode="xmile">
+
+  <mode name="xmile">
+
+    <namespace ns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0">
+      <validate schema="../../tools/v-generate/xmile-v1.0.xsd" schemaType="application/xml-schema"/>
+    </namespace>
+
+    <!-- Ours, and checked. Elements only: NVDL does dispatch foreign ATTRIBUTES too, but
+         an attribute section reaches the schema without the element it was written on,
+         which XSD is a poor fit for. vensim:attach and vensim:kind are therefore allowed
+         rather than validated, by the last rule below.
+
+         useMode="vendorSubtree" is what lets our elements go on using the standard's own
+         <doc> and <eqn> instead of a vensim: spelling of tags that already exist. It
+         holds the whole subtree in this section, so vensim-ext.xsd sees
+         <vensim:rc><eqn/><units/><doc/></vensim:rc> entire and can say what is allowed
+         there. Without it each standard child would be dispatched back to the XMILE
+         section as a document rooted at <eqn> or <doc>, which the published schema
+         declares only as local children of stock/flow/aux and cannot validate. -->
+    <namespace ns="http://www.vensim.com/XMILE">
+      <validate schema="vensim-ext.xsd" schemaType="application/xml-schema"
+                useMode="vendorSubtree"/>
+    </namespace>
+
+    <!-- Other vendors' elements, and every foreign attribute including our own. -->
+    <anyNamespace match="elements attributes">
+      <allow useMode="foreignSubtree"/>
+    </anyNamespace>
+
+  </mode>
+
+  <!-- Inside one of OUR elements: attach rather than allow, so the content reaches
+       vensim-ext.xsd as part of the section instead of being dropped from it. That is
+       the difference between "we permit standard markup in there" and "we say what
+       standard markup is permitted in there". -->
+  <mode name="vendorSubtree">
+    <anyNamespace match="elements attributes">
+      <attach useMode="vendorSubtree"/>
+    </anyNamespace>
+  </mode>
+
+  <!-- Inside another vendor's element: not ours to check, so everything below is
+       accepted as it stands. -->
+  <mode name="foreignSubtree">
+    <anyNamespace match="elements attributes">
+      <allow useMode="foreignSubtree"/>
+    </anyNamespace>
+  </mode>
+
+</rules>

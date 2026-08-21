@@ -1,0 +1,54 @@
+# Schemas belonging to the proposals
+
+Supporting artefacts for the items in the parent directory, chiefly item 1, the
+vendor-extension mechanism. None of these is a specification deliverable; the schema the
+specification ships is `spec/schema/xmile.xsd.xml`.
+
+**All of it is now historical.** The specification took the XSD 1.1 route on 2026-08-18,
+so the XSD 1.0 wildcard form, the `<extensions>` container and the NVDL dispatch are
+closed rather than competing. They are kept as the record of what was compared, as the
+evidence behind the numbers in `00-corpus-validation.md`, and because the generator that
+produced them applies to the next proposal.
+
+## Generated - do not edit
+
+The three `xmile-v1.x-proposal*` files are output of `tools/v-generate/`. Each is
+`tools/v-generate/xmile-v1.0.xsd`, the published OASIS Standard schema, plus one
+mechanical change. Edit the generator, not these files; an edit here is lost the next
+time anyone regenerates.
+
+| File | Produced by | Change |
+|---|---|---|
+| `xmile-v1.x-proposal.xsd` | `make_proposal_xsd.py` | 143 `xs:any` / `xs:anyAttribute` wildcards, XSD 1.0 |
+| `xmile-v1.x-proposal-container.xsd` | `make_proposal_xsd.py --container` | one `<extensions>` child element per type |
+| `xmile-v1.x-proposal-11.xsd` | `make_proposal_xsd.py --xsd11` | `xs:defaultOpenContent` plus schema-level `defaultAttributes`, XSD 1.1 |
+
+Regenerating produces files byte-identical to the ones committed here, so a diff after
+running the generator means the generator changed.
+
+`-11` means XSD 1.1, the version of the schema language, not XMILE v1.1. The two version
+numbers are unrelated and both are in play in this directory.
+
+`compare_proposals.py` in `tools/v-generate/` measures the three against each other and
+against `/models`, and `proposals/00-corpus-validation.md` reports what they do to a
+122-file corpus.
+
+## Hand-maintained
+
+| File | |
+|---|---|
+| `xmile-vendor.nvdl` | Validates a vendor-extended file without changing the schema: NVDL splits the document by namespace, hands the XMILE section to the unmodified v1.0 schema, and accepts everything else unvalidated. |
+| `xmile-vensim.nvdl` | The same dispatch, except that the Vensim namespace goes to `vensim-ext.xsd` instead of being waved through, so a typo in our exporter is caught. |
+| `vensim-ext.xsd` | The Vensim extension namespace, for use with `xmile-vensim.nvdl`. Every element is declared globally because NVDL hands each split section to its validator as a document in its own right, so context such as "netflow belongs to a stock" cannot be expressed and is recorded in comments instead. |
+
+The NVDL pair is the third of the three routes considered in item 1, and the only one
+needing no change to the published schema and no cooperation from anyone. It is closed as
+a proposal, but the arrangement stays available to any vendor wanting a stricter file of
+its own: `xmile-vensim.nvdl` is how we check our own exports against `vensim-ext.xsd`
+without forking anything.
+
+Two things to know if you run them. Both NVDL files dispatch to
+`../../tools/v-generate/xmile-v1.0.xsd`; the path was a bare sibling name in Ventana's
+tree and was repointed when these files were copied here. And the element counts in the
+`vensim-ext.xsd` header comment come from Ventana's full 101-file corpus, not from
+`/models`, which holds nine.

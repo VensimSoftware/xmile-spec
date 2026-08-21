@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0">
+	<header>
+		<product version="1.0" lang="en">Vensim</product>
+	</header>
+	<sim_specs method="euler" time_units="Time">
+		<start>0</start>
+		<stop>30</stop>
+		<dt>0.125</dt>
+	</sim_specs>
+	<model>
+		<variables>
+			<stock name="teacup_temperature">
+					<eqn>
+					 180
+					</eqn>
+					<outflow>
+					heat_loss_to_room
+					</outflow>
+				<units>degrees</units>
+				<doc></doc>
+			</stock>
+			<aux name="DT">
+					<eqn> TIME_STEP					</eqn>
+				<units>Time</units>
+				<doc></doc>
+			</aux>
+			<flow name="heat_loss_to_room">
+					<eqn> (teacup_temperature-room_temperature)/characteristic_time					</eqn>
+				<units>deg/Time</units>
+				<doc></doc>
+			</flow>
+			<aux name="characteristic_time">
+					<eqn> 10					</eqn>
+				<units>minutes</units>
+				<doc></doc>
+			</aux>
+			<aux name="room_temperature">
+					<eqn> 70					</eqn>
+				<units>degrees</units>
+				<doc></doc>
+			</aux>
+		</variables>
+		<views>
+			<view type="stock_flow" name="View 0">
+				<stock name="teacup_temperature" x="140" y="96.5" width="61" height="34"/>
+				<aux name="characteristic_time" x="338.5" y="186.5" width="52" height="26"/>
+				<aux name="room_temperature" x="242" y="194.5" width="49" height="26"/>
+				<flow name="heat_loss_to_room" x="225.5" y="96.5"><pts><pt x="140" y="96.5"/><pt x="285.5" y="96.5"/></pts></flow>
+				<connector angle="145.384"><from>characteristic_time</from><to xmlns:vensim="http://www.vensim.com/XMILE" vensim:attach="label">heat_loss_to_room</to></connector>
+				<connector angle="100.861"><from>room_temperature</from><to xmlns:vensim="http://www.vensim.com/XMILE" vensim:attach="label">heat_loss_to_room</to></connector>
+				<connector angle="280.291"><from>teacup_temperature</from><to xmlns:vensim="http://www.vensim.com/XMILE" vensim:attach="label">heat_loss_to_room</to></connector>
+			</view>
+		</views>
+	</model>
+</xmile>

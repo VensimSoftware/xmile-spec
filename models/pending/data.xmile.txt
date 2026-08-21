@@ -1,0 +1,83 @@
+source:   data.xmile
+root:     {http://docs.oasis-open.org/xmile/ns/XMILE/v1.0}xmile
+contents: 21 aux, 1 group, 1 view
+schema:   xmile-v1.0.xsd
+result:   10 error(s), 10 expected -- all expected
+
+expected (deliberate Vensim extensions):
+    -- doc on <start> -- proposal item 4: control parameters carry comments in Vensim
+    line 7  in  xmile > sim_specs > start
+        <start>
+        parent: <sim_specs method="euler" time_units="Month">
+        Element '{xmile}start': Element content is not allowed, because the type definition is simple.
+    -- doc on <stop> -- proposal item 4: control parameters carry comments in Vensim
+    line 8  in  xmile > sim_specs > stop
+        <stop>
+        parent: <sim_specs method="euler" time_units="Month">
+        Element '{xmile}stop': Element content is not allowed, because the type definition is simple.
+    -- doc on <dt> -- proposal item 4: control parameters carry comments in Vensim
+    line 9  in  xmile > sim_specs > dt
+        <dt>
+        parent: <sim_specs method="euler" time_units="Month">
+        Element '{xmile}dt': Element content is not allowed, because the content type is a simple type definition.
+    -- vensim:saveper -- the save interval; <sim_specs> has start/stop/dt/run and no equivalent, so both the value and any comment on it are otherwise dropped
+    line 10  in  xmile > sim_specs > vensim:saveper
+        <vensim:saveper>
+        parent: <sim_specs method="euler" time_units="Month">
+        Element '{vensim}saveper': This element is not expected.
+    -- vensim:kind -- on a <dim>, family/subrange/equivalent/copy, since XMILE cannot say a dimension is related to another at all; on an <aux>, data or string, which are variables XMILE has no element for but which stay <aux> so that references to them still resolve
+    line 43  in  xmile > model > variables > aux
+        <aux vensim:kind="data" name="data_equation">
+        parent: <variables>
+        Element '{xmile}aux', attribute '{vensim}kind': The attribute '{vensim}kind' is not allowed.
+    line 48  in  xmile > model > variables > aux
+        <aux vensim:kind="data" name="data_equation_hold">
+        parent: <variables>
+        Element '{xmile}aux', attribute '{vensim}kind': The attribute '{vensim}kind' is not allowed.
+    line 53  in  xmile > model > variables > aux
+        <aux vensim:kind="data" name="data_equation_look">
+        parent: <variables>
+        Element '{xmile}aux', attribute '{vensim}kind': The attribute '{vensim}kind' is not allowed.
+    line 58  in  xmile > model > variables > aux
+        <aux vensim:kind="data" name="data_equation_raw">
+        parent: <variables>
+        Element '{xmile}aux', attribute '{vensim}kind': The attribute '{vensim}kind' is not allowed.
+    line 63  in  xmile > model > variables > aux
+        <aux vensim:kind="data" name="data_in">
+        parent: <variables>
+        Element '{xmile}aux', attribute '{vensim}kind': The attribute '{vensim}kind' is not allowed.
+    -- view name -- every tool writes it; neither schema nor prose allows it
+    line 76  in  xmile > model > views > view
+        <view type="stock_flow" name="View 1">
+        parent: <views>
+        Element '{xmile}view', attribute 'name': The attribute 'name' is not allowed.
+
+schema:   xmile-v1.x-proposal.xsd
+result:   5 error(s), 5 expected -- all expected
+
+expected (deliberate Vensim extensions):
+    -- doc on <start> -- proposal item 4: control parameters carry comments in Vensim
+    line 7  in  xmile > sim_specs > start
+        <start>
+        parent: <sim_specs method="euler" time_units="Month">
+        Element '{xmile}start': Element content is not allowed, because the type definition is simple.
+    -- doc on <stop> -- proposal item 4: control parameters carry comments in Vensim
+    line 8  in  xmile > sim_specs > stop
+        <stop>
+        parent: <sim_specs method="euler" time_units="Month">
+        Element '{xmile}stop': Element content is not allowed, because the type definition is simple.
+    -- doc on <dt> -- proposal item 4: control parameters carry comments in Vensim
+    line 9  in  xmile > sim_specs > dt
+        <dt>
+        parent: <sim_specs method="euler" time_units="Month">
+        Element '{xmile}dt': Element content is not allowed, because the content type is a simple type definition.
+    -- vensim:saveper -- the save interval; <sim_specs> has start/stop/dt/run and no equivalent, so both the value and any comment on it are otherwise dropped
+    line 10  in  xmile > sim_specs > vensim:saveper
+        <vensim:saveper>
+        parent: <sim_specs method="euler" time_units="Month">
+        Element '{vensim}saveper': This element is not expected.
+    -- view name -- every tool writes it; neither schema nor prose allows it
+    line 76  in  xmile > model > views > view
+        <view type="stock_flow" name="View 1">
+        parent: <views>
+        Element '{xmile}view', attribute 'name': The attribute 'name' is not allowed.

@@ -1,0 +1,48 @@
+source:   teacup.mdl.xmile
+root:     {http://docs.oasis-open.org/xmile/ns/XMILE/v1.0}xmile
+contents: 2 stock, 2 flow, 5 aux, 1 view
+schema:   xmile-v1.0.xsd
+result:   4 error(s), 4 expected -- all expected
+
+expected (deliberate Vensim extensions):
+    -- view name -- every tool writes it; neither schema nor prose allows it
+    line 45  in  xmile > model > views > view
+        <view type="stock_flow" name="View 0">
+        parent: <views>
+        Element '{xmile}view', attribute 'name': The attribute 'name' is not allowed.
+    -- vensim:attach -- which of a flow's two sketch objects an arrow ended on
+    line 50  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="145.384">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 51  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="100.861">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 52  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="280.291">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+
+schema:   xmile-v1.x-proposal.xsd
+result:   4 error(s), 4 expected -- all expected
+
+expected (deliberate Vensim extensions):
+    -- view name -- every tool writes it; neither schema nor prose allows it
+    line 45  in  xmile > model > views > view
+        <view type="stock_flow" name="View 0">
+        parent: <views>
+        Element '{xmile}view', attribute 'name': The attribute 'name' is not allowed.
+    -- vensim:attach -- which of a flow's two sketch objects an arrow ended on
+    line 50  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="145.384">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 51  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="100.861">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 52  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="280.291">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.

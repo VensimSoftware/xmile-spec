@@ -1,0 +1,162 @@
+source:   YEAST4.xmile
+root:     {http://docs.oasis-open.org/xmile/ns/XMILE/v1.0}xmile
+contents: 6 stock, 8 flow, 46 aux, 6 gf, 1 group, 2 view
+schema:   xmile-v1.0.xsd
+result:   19 error(s), 19 expected -- all expected
+
+expected (deliberate Vensim extensions):
+    -- doc on <start> -- proposal item 4: control parameters carry comments in Vensim
+    line 7  in  xmile > sim_specs > start
+        <start>
+        parent: <sim_specs method="euler" time_units="Minute">
+        Element '{xmile}start': Element content is not allowed, because the type definition is simple.
+    -- doc on <stop> -- proposal item 4: control parameters carry comments in Vensim
+    line 8  in  xmile > sim_specs > stop
+        <stop>
+        parent: <sim_specs method="euler" time_units="Minute">
+        Element '{xmile}stop': Element content is not allowed, because the type definition is simple.
+    -- doc on <dt> -- proposal item 4: control parameters carry comments in Vensim
+    line 9  in  xmile > sim_specs > dt
+        <dt>
+        parent: <sim_specs method="euler" time_units="Minute">
+        Element '{xmile}dt': Element content is not allowed, because the content type is a simple type definition.
+    -- vensim:saveper -- the save interval; <sim_specs> has start/stop/dt/run and no equivalent, so both the value and any comment on it are otherwise dropped
+    line 10  in  xmile > sim_specs > vensim:saveper
+        <vensim:saveper>
+        parent: <sim_specs method="euler" time_units="Minute">
+        Element '{vensim}saveper': This element is not expected.
+    -- vensim:kind -- on a <dim>, family/subrange/equivalent/copy, since XMILE cannot say a dimension is related to another at all; on an <aux>, data or string, which are variables XMILE has no element for but which stay <aux> so that references to them still resolve
+    line 204  in  xmile > model > variables > aux
+        <aux vensim:kind="string" name="help_link">
+        parent: <variables>
+        Element '{xmile}aux', attribute '{vensim}kind': The attribute '{vensim}kind' is not allowed.
+    -- vensim:rc -- a Reality Check constraint or test input. Not model arithmetic, so it does not pretend to be a variable; XMILE has no counterpart
+    line 209  in  xmile > model > variables > vensim:rc
+        <vensim:rc kind="constraint" name="cold_is_dormant">
+        parent: <variables>
+        Element '{vensim}rc': This element is not expected.
+    -- view name -- every tool writes it; neither schema nor prose allows it
+    line 265  in  xmile > model > views > view
+        <view type="stock_flow" name="1">
+        parent: <views>
+        Element '{xmile}view', attribute 'name': The attribute 'name' is not allowed.
+    -- vensim:attach -- which of a flow's two sketch objects an arrow ended on
+    line 292  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="226.427">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 293  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="206.731">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 294  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="307.536">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 295  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="336.588">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 308  in  xmile > model > views > view > connector > to
+        <to vensim:attach="valve">
+        parent: <connector angle="300.982">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 321  in  xmile > model > views > view > connector > from
+        <from vensim:attach="valve">
+        parent: <connector angle="114.131">
+        Element '{xmile}from', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 321  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="114.131">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 322  in  xmile > model > views > view > connector > to
+        <to vensim:attach="valve">
+        parent: <connector angle="209.055">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 323  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="161.565">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 324  in  xmile > model > views > view > connector > from
+        <from vensim:attach="label">
+        parent: <connector angle="274.948">
+        Element '{xmile}from', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 324  in  xmile > model > views > view > connector > to
+        <to vensim:attach="valve">
+        parent: <connector angle="274.948">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 326  in  xmile > model > views > view
+        <view type="stock_flow" name="View 2">
+        parent: <views>
+        Element '{xmile}view', attribute 'name': The attribute 'name' is not allowed.
+
+schema:   xmile-v1.x-proposal.xsd
+result:   15 error(s), 15 expected -- all expected
+
+expected (deliberate Vensim extensions):
+    -- doc on <start> -- proposal item 4: control parameters carry comments in Vensim
+    line 7  in  xmile > sim_specs > start
+        <start>
+        parent: <sim_specs method="euler" time_units="Minute">
+        Element '{xmile}start': Element content is not allowed, because the type definition is simple.
+    -- doc on <stop> -- proposal item 4: control parameters carry comments in Vensim
+    line 8  in  xmile > sim_specs > stop
+        <stop>
+        parent: <sim_specs method="euler" time_units="Minute">
+        Element '{xmile}stop': Element content is not allowed, because the type definition is simple.
+    -- doc on <dt> -- proposal item 4: control parameters carry comments in Vensim
+    line 9  in  xmile > sim_specs > dt
+        <dt>
+        parent: <sim_specs method="euler" time_units="Minute">
+        Element '{xmile}dt': Element content is not allowed, because the content type is a simple type definition.
+    -- vensim:saveper -- the save interval; <sim_specs> has start/stop/dt/run and no equivalent, so both the value and any comment on it are otherwise dropped
+    line 10  in  xmile > sim_specs > vensim:saveper
+        <vensim:saveper>
+        parent: <sim_specs method="euler" time_units="Minute">
+        Element '{vensim}saveper': This element is not expected.
+    -- view name -- every tool writes it; neither schema nor prose allows it
+    line 265  in  xmile > model > views > view
+        <view type="stock_flow" name="1">
+        parent: <views>
+        Element '{xmile}view', attribute 'name': The attribute 'name' is not allowed.
+    -- vensim:attach -- which of a flow's two sketch objects an arrow ended on
+    line 292  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="226.427">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 293  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="206.731">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 294  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="307.536">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 295  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="336.588">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 308  in  xmile > model > views > view > connector > to
+        <to vensim:attach="valve">
+        parent: <connector angle="300.982">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 321  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="114.131">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 322  in  xmile > model > views > view > connector > to
+        <to vensim:attach="valve">
+        parent: <connector angle="209.055">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 323  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="161.565">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 324  in  xmile > model > views > view > connector > to
+        <to vensim:attach="valve">
+        parent: <connector angle="274.948">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 326  in  xmile > model > views > view
+        <view type="stock_flow" name="View 2">
+        parent: <views>
+        Element '{xmile}view', attribute 'name': The attribute 'name' is not allowed.

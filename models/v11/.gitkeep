@@ -1,0 +1,3 @@
+# Reserved: models that conform to XMILE v1.1 but not v1.0.
+# A file arrives here when a proposals/ item is resolved and its model in
+# models/pending/ starts validating. See ../README.md.

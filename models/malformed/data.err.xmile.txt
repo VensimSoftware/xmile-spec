@@ -1,0 +1,4 @@
+source:   data.err.xmile
+result:   NOT WELL-FORMED
+
+    StartTag: invalid element name, line 36, column 35 (models/malformed/data.err.xmile, line 36)

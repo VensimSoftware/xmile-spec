@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  vensim-ext.xsd - the Vensim extension namespace, for use with xmile-vensim.nvdl.
+
+  Every element is declared GLOBALLY because NVDL hands each split section to its
+  validator as a document in its own right: a <vensim:netflow> subtree arrives with
+  vensim:netflow as the root. There is consequently no way to say here that netflow
+  belongs to a stock, or that members belongs to a dim - that context lives on the other
+  side of the split. The comments record it instead.
+
+  Contents follow what Vensim actually writes, counted over the 101-file corpus in the
+  parent directory:
+
+      vensim:netflow   9   in <stock>       vensim:attach   42   attribute on <flow>
+      vensim:members  10   in <dim>         vensim:kind     20   attribute on <dim>/<aux>
+      vensim:rc        7   in <variables>
+      vensim:saveper   5   in <sim_specs>
+      vensim:except    5   in <aux>
+      vensim:map       2   in <dim>
+
+  The two attributes are declared for completeness; xmile-vensim.nvdl allows rather than
+  validates attribute sections, for the reason given there.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.vensim.com/XMILE"
+           targetNamespace="http://www.vensim.com/XMILE"
+           elementFormDefault="qualified">
+
+  <!-- In <stock>. The derivative as an expression, for a stock that does not decompose
+       into named flows: Level = INTEG( expression, init ). Proposal item 2. -->
+  <xs:element name="netflow" type="xs:string"/>
+
+  <!-- In <sim_specs>. The save interval; <sim_specs> has start/stop/dt/run and no
+       equivalent, so both the value and any comment on it are otherwise dropped.
+
+       Written as mixed content because we write <vensim:saveper>TIME_STEP<doc>...</doc>
+       </vensim:saveper> - the value as text, with an XMILE-namespace <doc> child. See
+       the note at the foot of this file: that nesting is a problem for the NVDL route,
+       and arguably a mistake in our exporter regardless. -->
+  <xs:element name="saveper">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:any namespace="##other" processContents="skip"
+                minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- In <aux>. ":EXCEPT: [Boston,Seattle]" - the part of an array an equation does not
+       apply to. Without it the equation and its exceptions collide. -->
+  <xs:element name="except" type="xs:string"/>
+
+  <!-- In <dim>. A range declaration as written: a family composed of subranges, a
+       sequence, a reordering. XMILE dimensions are flat and cannot compose. Item 13. -->
+  <xs:element name="members" type="xs:string"/>
+
+  <!-- In <dim>. One family's element paired with another's. XMILE has no mapping
+       between dimensions at all. Item 13. -->
+  <xs:element name="map" type="xs:string"/>
+
+  <!-- In <variables>. A Reality Check constraint or test input. Not model arithmetic, so
+       it does not pretend to be a variable; XMILE has no counterpart.
+
+       Its children - <eqn>, <units>, <doc> - are in the XMILE namespace, not ours, hence
+       the wildcard. Same caveat as <saveper>. -->
+  <xs:element name="rc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" processContents="skip"
+                minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="kind" type="xs:string" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Attribute on <flow>: which of a flow's two sketch objects an arrow ended on. -->
+  <xs:attribute name="attach" type="xs:string"/>
+
+  <!-- Attribute on <dim>: family / subrange / equivalent / copy.
+       Attribute on <aux>:  data / string - variables XMILE has no element for, kept as
+       <aux> so that references to them still resolve. -->
+  <xs:attribute name="kind" type="xs:string"/>
+
+  <!--
+
+    On standard elements inside our own, which two of these do: <vensim:saveper> holds a
+    <doc>, and <vensim:rc> holds <eqn>, <units> and <doc>, all in the XMILE namespace.
+    This is deliberate. A vensim:doc would be a second spelling of a tag that already
+    exists, which is the thing we ask the TC not to make us do.
+
+    Nothing has to legalise it on the XSD side. processContents="lax" validates a foreign
+    element only if the processor holds a schema for its namespace, and skips the whole
+    subtree otherwise - the <doc> included. Checked against all three proposal schemas.
+    When the processor DOES hold this schema, the wildcards above are what admit those
+    children, which is why they are namespace="##other" (relative to THIS schema, so the
+    XMILE namespace qualifies) rather than a list of named elements.
+
+    On the NVDL side it needs saying explicitly, because NVDL dispatches by namespace at
+    every level and would otherwise hand each standard child back to the XMILE section as
+    a document rooted at <doc> or <eqn> - which the published schema declares only as
+    local children of stock/flow/aux. xmile-vensim.nvdl says it with useMode and <attach>;
+    see the comments there. UNTESTED, like everything NVDL here.
+
+  -->
+
+</xs:schema>

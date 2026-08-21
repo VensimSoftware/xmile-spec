@@ -1,0 +1,40 @@
+source:   Educational-Outcomes.stmx
+root:     {http://docs.oasis-open.org/xmile/ns/XMILE/v1.0}xmile
+contents: 3 stock, 5 flow, 5 aux, 1 gf, 1 module, 1 group, 3 view
+schema:   xmile-v1.0.xsd
+result:   5 error(s), 5 UNEXPECTED
+
+unexpected:
+    line 4  in  xmile > header > smile
+        <smile version="1.0" namespace="std, isee"/>
+        parent: <header>
+        Element '{xmile}smile': This element is not expected.
+    line 10  in  xmile > sim_specs
+        <sim_specs isee:simulation_delay="0.1" method="Euler" time_units="months" isee:pause_after_rates="false" isee:instantaneous_flows="true">
+        parent: <xmile version="1.0">
+        Element '{xmile}sim_specs', attribute '{isee}simulation_delay': The attribute '{isee}simulation_delay' is not allowed.
+    line 10  in  xmile > sim_specs
+        <sim_specs isee:simulation_delay="0.1" method="Euler" time_units="months" isee:pause_after_rates="false" isee:instantaneous_flows="true">
+        parent: <xmile version="1.0">
+        Element '{xmile}sim_specs', attribute '{isee}pause_after_rates': The attribute '{isee}pause_after_rates' is not allowed.
+    line 10  in  xmile > sim_specs
+        <sim_specs isee:simulation_delay="0.1" method="Euler" time_units="months" isee:pause_after_rates="false" isee:instantaneous_flows="true">
+        parent: <xmile version="1.0">
+        Element '{xmile}sim_specs', attribute '{isee}instantaneous_flows': The attribute '{isee}instantaneous_flows' is not allowed.
+    line 15  in  xmile > isee:prefs
+        <isee:prefs show_module_prefix="true" layer="model" saved_runs="2" keep="false" rifp="false"/>
+        parent: <xmile version="1.0">
+        Element '{isee}prefs': This element is not expected.
+
+schema:   xmile-v1.x-proposal.xsd
+result:   2 error(s), 2 UNEXPECTED
+
+unexpected:
+    line 4  in  xmile > header > smile
+        <smile version="1.0" namespace="std, isee"/>
+        parent: <header>
+        Element '{xmile}smile': This element is not expected.
+    line 17  in  xmile > model_units
+        <model_units>
+        parent: <xmile version="1.0">
+        Element '{xmile}model_units': This element is not expected. Expected is ( ##other{xmile}* ).

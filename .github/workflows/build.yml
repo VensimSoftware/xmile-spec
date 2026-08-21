@@ -40,6 +40,20 @@ jobs:
       - name: Validate schema
         run: npm run validate
 
+      # The sample documents beside the schema are only worth having if they
+      # validate against it. Without this step nothing reads them, which is how
+      # WithArrays.xmile came to be committed with an unterminated tag.
+      #
+      # This is red today, for two reasons, and is worth keeping red as the
+      # tracker for both:
+      #   - <ai_information> and ai_state="..." are a proposed addition to the
+      #     standard that the schema does not yet declare.
+      #   - WithArrays.xmile writes <uses_arrays/> bare. Section 2 calls the
+      #     attribute maximum_dimensions and REQUIRED, the schema calls it
+      #     max_dimensions and required, and no file anywhere writes either.
+      - name: Validate sample documents
+        run: npm run validate -- "spec/schema/*.xmile"
+
       - uses: actions/upload-artifact@v4
         with:
           name: xmile-spec-html

@@ -8,3 +8,4 @@ __pycache__/
 *.pyc
 *.html
 !spec/**/*.html
+/proposals/07-comments.txt

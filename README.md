@@ -15,6 +15,10 @@ released the way code is.
 | `spec/images/` | Figures. |
 | `spec/schema/` | `xmile.xsd.xml`, the XML Schema for XMILE documents. XSD 1.1. |
 | `tools/` | The one-time Word conversion, plus the build, lint and validate used day to day. |
+| `tools/v-validate/` | Corpus validator: many models against several schemas, with committed result files. |
+| `tools/v-generate/` | Schema generators, used to demonstrate and measure a proposed change. |
+| `models/` | Test models, in subfolders by the XMILE version they are expected to conform to. |
+| `proposals/` | Proposals for a future version, one file per item, with the schemas and evidence behind them. |
 | `archive/` | The original Word documents, kept for provenance. Not edited. |
 
 ## Building

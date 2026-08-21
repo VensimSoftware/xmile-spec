@@ -1,0 +1,18 @@
+source:   teacup.stmx
+root:     {http://www.systemdynamics.org/XMILE}xmile
+contents: 1 stock, 1 flow, 2 aux
+schema:   xmile-v1.0.xsd
+result:   1 error(s), 1 UNEXPECTED
+
+unexpected:
+    line 2  in  sdorg:xmile
+        <sdorg:xmile version="1.0" level="3">
+        Element '{sdorg}xmile': No matching global declaration available for the validation root.
+
+schema:   xmile-v1.x-proposal.xsd
+result:   1 error(s), 1 UNEXPECTED
+
+unexpected:
+    line 2  in  sdorg:xmile
+        <sdorg:xmile version="1.0" level="3">
+        Element '{sdorg}xmile': No matching global declaration available for the validation root.

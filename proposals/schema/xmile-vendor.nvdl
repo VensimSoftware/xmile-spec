@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  xmile-vendor.nvdl - validate a vendor-extended XMILE file WITHOUT changing the schema.
+
+  NVDL (ISO/IEC 19757-4, Namespace-based Validation Dispatching Language) splits a
+  compound document into sections by namespace and hands each section to a validator of
+  its own. Here that means:
+
+      elements in the XMILE namespace   ->  the published xmile-v1.0.xsd, unmodified
+      anything else                     ->  removed from the XMILE section and accepted
+
+  The XMILE schema therefore sees the file with every vendor subtree already taken out,
+  so it validates a document it was designed for. <vensim:netflow> inside a <stock>
+  passes because the schema never sees it - not because the schema was made to tolerate
+  it. That is the whole point: this is the only option of the four that needs NO change
+  to the published artefact, and a vendor can adopt it today without the TC.
+
+  What it does NOT do:
+
+    - <bonkerstag> is still rejected, because an unprefixed element inherits the XMILE
+      default namespace and so stays in the XMILE section. Same for an unqualified
+      attribute. Same, unfortunately, for <smile>, which is a vendor element that a
+      vendor put in the standard's namespace: NVDL cannot rescue that either.
+    - It cannot express any constraint that crosses a namespace boundary - "vensim:netflow
+      only on a <stock> with no <inflow>" is not sayable, because the two live in
+      different sections by construction.
+    - It needs an NVDL processor. Jing is the usual one, and it needs a JVM.
+
+  Run:  java -jar jing.jar -n xmile-vendor.nvdl model.xmile
+
+  UNTESTED. Everything else in this directory was checked by running it; this file was
+  not, there being no JVM on the machine it was written on. Treat it as a draft to try,
+  not as a verified artefact.
+
+-->
+<rules xmlns="http://purl.oclc.org/dsdl/nvdl/ns/structure/1.0" startMode="xmile">
+
+  <mode name="xmile">
+
+    <!-- The standard's own namespace: the published schema, byte for byte. -->
+    <namespace ns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0">
+      <validate schema="../../tools/v-generate/xmile-v1.0.xsd" schemaType="application/xml-schema"/>
+    </namespace>
+
+    <!-- Everything else is a vendor extension: split out of the XMILE section and
+         accepted without validation. Written after the rule above so that the file
+         reads the same way under either reading of NVDL's rule precedence - the
+         specific namespace rule wins on specificity, and would also win on order.
+
+         useMode is the part that matters. Without it, an XMILE-namespace element
+         nested INSIDE a vendor element - <vensim:saveper>TIME_STEP<doc>...</doc>
+         </vensim:saveper> - would be dispatched back to the XMILE section as a
+         document rooted at <doc>, which the published schema cannot validate: it
+         declares <doc> only as a local child of stock/flow/aux. Switching modes on
+         the way in says instead that everything below a vendor element belongs to
+         that vendor's subtree, whatever namespace it is in. A vendor reusing the
+         standard's own <doc> and <eqn> rather than inventing a second spelling of
+         them is the case this exists for. -->
+    <anyNamespace match="elements attributes">
+      <allow useMode="vendorSubtree"/>
+    </anyNamespace>
+
+  </mode>
+
+  <!-- Inside a vendor element: everything stays in that section, standard elements
+       included. The useMode on the inner rule keeps that true at any depth without
+       relying on how a processor treats an action that names no mode. -->
+  <mode name="vendorSubtree">
+    <anyNamespace match="elements attributes">
+      <allow useMode="vendorSubtree"/>
+    </anyNamespace>
+  </mode>
+
+</rules>

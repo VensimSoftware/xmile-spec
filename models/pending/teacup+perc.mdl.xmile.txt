@@ -1,0 +1,93 @@
+source:   teacup+perc.mdl.xmile
+root:     {http://docs.oasis-open.org/xmile/ns/XMILE/v1.0}xmile
+contents: 4 stock, 2 flow, 9 aux, 3 group, 1 view
+schema:   xmile-v1.0.xsd
+result:   9 error(s), 9 expected -- all expected
+
+expected (deliberate Vensim extensions):
+    -- doc on <start> -- proposal item 4: control parameters carry comments in Vensim
+    line 29  in  xmile > sim_specs > start
+        <start>
+        parent: <sim_specs method="euler" time_units="minute">
+        Element '{xmile}start': Element content is not allowed, because the type definition is simple.
+    -- doc on <stop> -- proposal item 4: control parameters carry comments in Vensim
+    line 30  in  xmile > sim_specs > stop
+        <stop>
+        parent: <sim_specs method="euler" time_units="minute">
+        Element '{xmile}stop': Element content is not allowed, because the type definition is simple.
+    -- doc on <dt> -- proposal item 4: control parameters carry comments in Vensim
+    line 31  in  xmile > sim_specs > dt
+        <dt>
+        parent: <sim_specs method="euler" time_units="minute">
+        Element '{xmile}dt': Element content is not allowed, because the content type is a simple type definition.
+    -- vensim:saveper -- the save interval; <sim_specs> has start/stop/dt/run and no equivalent, so both the value and any comment on it are otherwise dropped
+    line 32  in  xmile > sim_specs > vensim:saveper
+        <vensim:saveper>
+        parent: <sim_specs method="euler" time_units="minute">
+        Element '{vensim}saveper': This element is not expected.
+    -- vensim:netflow -- a stock whose rate is an expression; XMILE cannot say it
+    line 49  in  xmile > model > variables > stock > vensim:netflow
+        <vensim:netflow>
+        parent: <stock name="perceived_temperature">
+        Element '{vensim}netflow': This element is not expected.
+    -- view name -- every tool writes it; neither schema nor prose allows it
+    line 113  in  xmile > model > views > view
+        <view type="stock_flow" name="View 0">
+        parent: <views>
+        Element '{xmile}view', attribute 'name': The attribute 'name' is not allowed.
+    -- vensim:attach -- which of a flow's two sketch objects an arrow ended on
+    line 122  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="145.384">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 123  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="100.861">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 124  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="280.291">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+
+schema:   xmile-v1.x-proposal.xsd
+result:   8 error(s), 8 expected -- all expected
+
+expected (deliberate Vensim extensions):
+    -- doc on <start> -- proposal item 4: control parameters carry comments in Vensim
+    line 29  in  xmile > sim_specs > start
+        <start>
+        parent: <sim_specs method="euler" time_units="minute">
+        Element '{xmile}start': Element content is not allowed, because the type definition is simple.
+    -- doc on <stop> -- proposal item 4: control parameters carry comments in Vensim
+    line 30  in  xmile > sim_specs > stop
+        <stop>
+        parent: <sim_specs method="euler" time_units="minute">
+        Element '{xmile}stop': Element content is not allowed, because the type definition is simple.
+    -- doc on <dt> -- proposal item 4: control parameters carry comments in Vensim
+    line 31  in  xmile > sim_specs > dt
+        <dt>
+        parent: <sim_specs method="euler" time_units="minute">
+        Element '{xmile}dt': Element content is not allowed, because the content type is a simple type definition.
+    -- vensim:saveper -- the save interval; <sim_specs> has start/stop/dt/run and no equivalent, so both the value and any comment on it are otherwise dropped
+    line 32  in  xmile > sim_specs > vensim:saveper
+        <vensim:saveper>
+        parent: <sim_specs method="euler" time_units="minute">
+        Element '{vensim}saveper': This element is not expected.
+    -- view name -- every tool writes it; neither schema nor prose allows it
+    line 113  in  xmile > model > views > view
+        <view type="stock_flow" name="View 0">
+        parent: <views>
+        Element '{xmile}view', attribute 'name': The attribute 'name' is not allowed.
+    -- vensim:attach -- which of a flow's two sketch objects an arrow ended on
+    line 122  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="145.384">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 123  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="100.861">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.
+    line 124  in  xmile > model > views > view > connector > to
+        <to vensim:attach="label">
+        parent: <connector angle="280.291">
+        Element '{xmile}to', attribute '{vensim}attach': The attribute '{vensim}attach' is not allowed.

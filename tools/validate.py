@@ -21,6 +21,12 @@ Usage:
   python tools/validate.py model.stmx [more...]   also validate documents
   python tools/validate.py --schema other.xsd f   validate against another schema
   python tools/validate.py --max-errors 5 f       cap the report per document
+
+--schema MAY be repeated. Every schema given is run over the whole document list
+and the error totals are printed side by side at the end. That is how to answer
+"what is a proposed schema change worth?" -- put the current schema and the
+proposed one on the same command line and compare the totals over real models,
+rather than reading a diff and guessing.
 """
 import argparse
 import glob
@@ -45,8 +51,9 @@ def main(argv=None):
     parser.add_argument('documents', nargs='*',
                         help='XMILE files to validate. Globs are expanded here, '
                              'so they work the same on every shell.')
-    parser.add_argument('--schema', default=str(DEFAULT_SCHEMA), type=Path,
-                        help='schema to validate against (default: %s)' % DEFAULT_SCHEMA)
+    parser.add_argument('--schema', action='append', type=Path, metavar='XSD',
+                        help='schema to validate against; may be repeated, in which '
+                             'case the totals are compared (default: %s)' % DEFAULT_SCHEMA)
     parser.add_argument('--max-errors', type=int, default=25, metavar='N',
                         help='most errors to print per document, 0 for all (default: 25)')
     args = parser.parse_args(argv)
@@ -59,17 +66,20 @@ def main(argv=None):
             'Install it with:  python -m pip install -r tools/requirements.txt',
         )
 
-    if not args.schema.exists():
-        return fail('schema not found: %s' % args.schema)
+    schemas = args.schema or [DEFAULT_SCHEMA]
 
-    try:
-        schema = xmlschema.XMLSchema11(str(args.schema))
-    except Exception as exc:                                  # noqa: BLE001
-        return fail('%s did not compile as XSD 1.1.' % args.schema,
-                    '\n%s: %s' % (type(exc).__name__, exc))
-
-    print('schema OK: %s compiles as XSD 1.1 (%d global element(s), %d type(s)).'
-          % (args.schema, len(schema.elements), len(schema.types)))
+    compiled = []
+    for path in schemas:
+        if not path.exists():
+            return fail('schema not found: %s' % path)
+        try:
+            schema = xmlschema.XMLSchema11(str(path))
+        except Exception as exc:                              # noqa: BLE001
+            return fail('%s did not compile as XSD 1.1.' % path,
+                        '\n%s: %s' % (type(exc).__name__, exc))
+        compiled.append((path, schema))
+        print('schema OK: %s compiles as XSD 1.1 (%d global element(s), %d type(s)).'
+              % (path, len(schema.elements), len(schema.types)))
 
     paths = []
     for pattern in args.documents:
@@ -85,6 +95,36 @@ def main(argv=None):
     if not paths:
         return 0
 
+    totals = []
+    for n, (path, schema) in enumerate(compiled):
+        # With one schema this prints exactly what it always printed. With more,
+        # the comparison is the point, so each block is labelled.
+        if len(compiled) > 1:
+            print('%s=== %s ===' % ('\n' if n else '\n', path))
+        total = sweep(paths, schema, args.max_errors)
+        totals.append((path, total))
+
+    if len(compiled) > 1:
+        width = max(len(str(p)) for p, _ in totals)
+        print('\ntotal errors over %d document(s):' % len(paths))
+        for path, total in totals:
+            print('    %-*s  %d' % (width, path, total))
+        best = min(t for _, t in totals)
+        if best < totals[0][1]:
+            print('    (%s is %d fewer than %s)'
+                  % (min(totals, key=lambda r: r[1])[0], totals[0][1] - best, totals[0][0]))
+
+    if totals[0][1]:
+        print('\nvalidate FAILED: %d error(s) across %d document(s).'
+              % (totals[0][1], len(paths)), file=sys.stderr)
+        return 1
+
+    print('\nvalidate OK: %d document(s) valid.' % len(paths))
+    return 0
+
+
+def sweep(paths, schema, max_errors):
+    """Validate every path against one schema; returns the error total."""
     total = 0
     for path in paths:
         try:
@@ -100,7 +140,7 @@ def main(argv=None):
 
         total += len(errors)
         print('%s: %d error(s)' % (path, len(errors)))
-        shown = errors if args.max_errors == 0 else errors[:args.max_errors]
+        shown = errors if max_errors == 0 else errors[:max_errors]
         for error in shown:
             where = getattr(error, 'path', None) or '(document)'
             reason = ' '.join(str(error.reason or '').split())
@@ -108,14 +148,7 @@ def main(argv=None):
         if len(errors) > len(shown):
             print('  ... %d more; rerun with --max-errors 0 to see them all'
                   % (len(errors) - len(shown)))
-
-    if total:
-        print('\nvalidate FAILED: %d error(s) across %d document(s).' % (total, len(paths)),
-              file=sys.stderr)
-        return 1
-
-    print('\nvalidate OK: %d document(s) valid.' % len(paths))
-    return 0
+    return total
 
 
 if __name__ == '__main__':

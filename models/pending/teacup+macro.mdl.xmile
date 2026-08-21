@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:vensim="http://www.vensim.com/XMILE">
+	<header>
+		<product version="1.0" lang="en">Vensim</product>
+	</header>
+	<sim_specs method="euler" time_units="minute">
+		<start>0<doc>Model start time</doc></start>
+		<stop>30<doc>Thinking of time as minutes, about the time it takes to drink tea</doc></stop>
+		<dt>0.125<doc>1/8 of a time unit</doc></dt>
+		<vensim:saveper>TIME_STEP<doc>Save everything</doc></vensim:saveper>
+	</sim_specs>
+	<model_units>
+		<unit name="minute">
+			<alias>minutes</alias>
+		</unit>
+		<unit name="deg">
+			<alias>degree</alias>
+			<alias>degrees</alias>
+		</unit>
+	</model_units>
+	<macro name="PREV">
+		<parm>input</parm>
+		<eqn>PREV</eqn>
+		<variables>
+			<stock name="PREV">
+				<eqn>input</eqn>
+				<vensim:netflow>(input-PREV)/TIME STEP$</vensim:netflow>
+				<units>input</units>
+			</stock>
+		</variables>
+	</macro>
+	<macro name="SMTH_DECR">
+		<parm>input</parm>
+		<parm>tau</parm>
+		<eqn>SMTH_DECR</eqn>
+		<doc>A SMOOTH that can only decrease</doc>
+		<variables>
+			<stock name="SMTH_DECR">
+				<eqn>input</eqn>
+				<vensim:netflow>RATE</vensim:netflow>
+				<units>input</units>
+				<doc>A SMOOTH that can only decrease</doc>
+			</stock>
+			<aux name="RATE" access="output">
+				<eqn>MIN(0,(input-SMTH DECR)/tau)</eqn>
+				<units>input/tau</units>
+			</aux>
+		</variables>
+	</macro>
+	<model>
+		<variables>
+			<stock name="teacup_temperature">
+					<eqn>
+					 180
+					</eqn>
+					<outflow>
+					heat_loss_to_room
+					</outflow>
+				<units>degrees</units>
+				<doc></doc>
+			</stock>
+			<aux name="DT">
+					<eqn> TIME_STEP					</eqn>
+				<units>minute</units>
+				<doc></doc>
+			</aux>
+			<flow name="heat_loss_to_room">
+					<eqn> (teacup_temperature-room_temperature)/characteristic_time					</eqn>
+				<units>deg/minute</units>
+				<doc></doc>
+			</flow>
+			<aux name="perceived_temperature">
+					<eqn>SMTH_DECR(teacup_temperature,perception_time:rate_of_change)					</eqn>
+				<units>degrees</units>
+				<doc></doc>
+			</aux>
+			<aux name="previous_temperature">
+					<eqn>PREV(teacup_temperature)					</eqn>
+				<units>degrees</units>
+				<doc></doc>
+			</aux>
+			<aux name="rate_export">
+					<eqn>rate_of_change					</eqn>
+				<units>degrees/minute</units>
+				<doc></doc>
+			</aux>
+			<aux name="characteristic_time">
+					<eqn> 10					</eqn>
+				<units>minutes</units>
+				<doc></doc>
+			</aux>
+			<aux name="perception_time">
+					<eqn>5					</eqn>
+				<units>minute</units>
+				<doc></doc>
+			</aux>
+			<aux name="room_temperature">
+					<eqn> 70					</eqn>
+				<units>degrees</units>
+				<doc></doc>
+			</aux>
+			<aux name="TIME_STEP">
+				<eqn>DT</eqn>
+			</aux>
+			<group name="Body">
+				<doc>This is the physics of the teacup temperature.</doc>
+				<entity name="characteristic_time"/>
+				<entity name="heat_loss_to_room"/>
+				<entity name="room_temperature"/>
+				<entity name="teacup_temperature"/>
+			</group>
+			<group name="Control">
+				<doc>Simulation Control Parameters</doc>
+				<entity name="DT"/>
+			</group>
+			<group name="Perception">
+				<doc>This is the perception of the teacup temperature.</doc>
+				<entity name="perceived_temperature"/>
+				<entity name="perception_time"/>
+			</group>
+			<group name="&quot;teacup+perc&quot;">
+				<doc>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;richtext version=&quot;1.0.0.0&quot; xmlns=&quot;http://www.wxwidgets.org&quot;&gt;
+  &lt;paragraphlayout textcolor=&quot;#000000&quot; fontpointsize=&quot;9&quot; fontfamily=&quot;70&quot; fontstyle=&quot;90&quot; fontweight=&quot;400&quot; fontunderlined=&quot;0&quot; fontface=&quot;Segoe UI&quot; alignment=&quot;1&quot; parspacingafter=&quot;10&quot; parspacingbefore=&quot;0&quot; linespacing=&quot;10&quot; margin-left=&quot;5,4098&quot; margin-right=&quot;5,4098&quot; margin-top=&quot;5,4098&quot; margin-bottom=&quot;5,4098&quot;&gt;
+    &lt;paragraph&gt;
+      &lt;text&gt;&quot;This is a &quot;&lt;/text&gt;
+      &lt;text fontweight=&quot;700&quot;&gt;fancy&lt;/text&gt;
+      &lt;text&gt;&quot; formatted &quot;&lt;/text&gt;
+      &lt;text fontface=&quot;Segoe UI Black&quot;&gt;notes&lt;/text&gt;
+      &lt;text&gt;&quot; header.&quot;&lt;/text&gt;
+    &lt;/paragraph&gt;
+    &lt;paragraph leftindent=&quot;60&quot; leftsubindent=&quot;60&quot; bulletstyle=&quot;512&quot; bulletname=&quot;standard/circle&quot; liststyle=&quot;Bullet List 1&quot;&gt;
+      &lt;text&gt;a&lt;/text&gt;
+    &lt;/paragraph&gt;
+    &lt;paragraph leftindent=&quot;60&quot; leftsubindent=&quot;60&quot; bulletstyle=&quot;512&quot; bulletname=&quot;standard/circle&quot; liststyle=&quot;Bullet List 1&quot;&gt;
+      &lt;text&gt;b&lt;/text&gt;
+    &lt;/paragraph&gt;
+    &lt;paragraph leftindent=&quot;60&quot; leftsubindent=&quot;60&quot; bulletstyle=&quot;512&quot; bulletname=&quot;standard/circle&quot; liststyle=&quot;Bullet List 1&quot;&gt;
+      &lt;text&gt;c&lt;/text&gt;
+    &lt;/paragraph&gt;
+  &lt;/paragraphlayout&gt;
+&lt;/richtext&gt;</doc>
+				<entity name="rate_export"/>
+			</group>
+		</variables>
+		<views>
+			<view type="stock_flow" name="View 0">
+				<stock name="teacup_temperature" x="135.5" y="97.5" width="61" height="34"/>
+				<aux name="characteristic_time" x="338.5" y="186.5" width="52" height="26"/>
+				<aux name="room_temperature" x="242" y="194.5" width="49" height="26"/>
+				<aux name="perceived_temperature" x="138" y="220.5" width="58" height="32"/>
+				<aux name="perception_time" x="194" y="268.5" width="60" height="26"/>
+				<aux name="rate_export" x="309.5" y="261" width="49" height="26"/>
+				<aux name="previous_temperature" x="54" y="153.5" width="49" height="26"/>
+				<flow name="heat_loss_to_room" x="225.5" y="96.5"><pts><pt x="135.5" y="97.5"/><pt x="285.5" y="96.5"/></pts></flow>
+				<text_box uid="1" x="219.5" y="50" width="80" height="40">Teacup Model from the VenPy repo</text_box>
+				<connector angle="145.384"><from>characteristic_time</from><to vensim:attach="label">heat_loss_to_room</to></connector>
+				<connector angle="100.861"><from>room_temperature</from><to vensim:attach="label">heat_loss_to_room</to></connector>
+				<connector angle="276.763"><from>teacup_temperature</from><to vensim:attach="label">heat_loss_to_room</to></connector>
+				<connector angle="271.164"><from>teacup_temperature</from><to>perceived_temperature</to></connector>
+				<connector angle="139.399"><from>perception_time</from><to>perceived_temperature</to></connector>
+				<connector angle="214.494"><from>teacup_temperature</from><to>previous_temperature</to></connector>
+			</view>
+		</views>
+	</model>
+</xmile>

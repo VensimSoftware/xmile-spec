@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:vensim="http://www.vensim.com/XMILE">
+	<header>
+		<product version="1.0" lang="en">Vensim</product>
+	</header>
+	<sim_specs method="euler" time_units="Month">
+		<start>0<doc>The initial time for the simulation.</doc></start>
+		<stop>100<doc>The final time for the simulation.</doc></stop>
+		<dt>1<doc>The time step for the simulation.</doc></dt>
+		<vensim:saveper>TIME_STEP<doc>The frequency with which output is stored.</doc></vensim:saveper>
+	</sim_specs>
+	<model>
+		<variables>
+			<aux name="aux_equation">
+					<eqn>data_equation*3					</eqn>
+				<units>widgets</units>
+				<doc></doc>
+			</aux>
+			<aux name="aux_equation_hold">
+					<eqn>data_equation_hold*3					</eqn>
+				<units>widgets</units>
+				<doc></doc>
+			</aux>
+			<aux name="aux_equation_look">
+					<eqn>data_equation_look*3					</eqn>
+				<units>widgets</units>
+				<doc></doc>
+			</aux>
+			<aux name="aux_equation_raw">
+					<eqn>IF_THEN_ELSE(data_equation_raw=:NA:,0,data_equation_raw)					</eqn>
+				<units>widgets</units>
+				<doc></doc>
+			</aux>
+			<aux name="iffy">
+					<eqn>aux_equation
+	+IF_THEN_ELSE(:NOT: aux_equation<40
+	:OR: aux_equation<10 
+	,RANDOM_UNIFORM(-1,1,0)
+	,0)					</eqn>
+				<units>widgets</units>
+				<doc></doc>
+			</aux>
+			<aux vensim:kind="data" name="data_equation">
+					<eqn>:INTERPOLATE::=2*data_in					</eqn>
+				<units>widgets</units>
+				<doc></doc>
+			</aux>
+			<aux vensim:kind="data" name="data_equation_hold">
+					<eqn>:HOLD BACKWARD::=2*data_in					</eqn>
+				<units>widgets</units>
+				<doc></doc>
+			</aux>
+			<aux vensim:kind="data" name="data_equation_look">
+					<eqn>:LOOK FORWARD::=2*data_in					</eqn>
+				<units>widgets</units>
+				<doc></doc>
+			</aux>
+			<aux vensim:kind="data" name="data_equation_raw">
+					<eqn>:RAW::=2*data_in					</eqn>
+				<units>widgets</units>
+				<doc></doc>
+			</aux>
+			<aux vensim:kind="data" name="data_in">
+					<eqn>:INTERPOLATE:					</eqn>
+				<units>widgets</units>
+				<doc></doc>
+			</aux>
+			<aux name="TIME_STEP">
+				<eqn>DT</eqn>
+			</aux>
+			<group name="Control">
+				<doc>Simulation Control Parameters</doc>
+			</group>
+		</variables>
+		<views>
+			<view type="stock_flow" name="View 1">
+				<aux name="data_in" x="190" y="210.5" width="46" height="26"/>
+				<aux name="data_equation" x="307" y="124.5" width="53" height="26"/>
+				<aux name="aux_equation" x="422" y="126.5" width="50" height="26"/>
+				<aux name="data_equation_hold" x="310" y="181.5" width="53" height="26"/>
+				<aux name="aux_equation_hold" x="425" y="183.5" width="50" height="26"/>
+				<aux name="data_equation_look" x="314.5" y="247.5" width="53" height="26"/>
+				<aux name="aux_equation_look" x="429.5" y="249.5" width="50" height="26"/>
+				<aux name="data_equation_raw" x="319.5" y="310.5" width="53" height="26"/>
+				<aux name="aux_equation_raw" x="434.5" y="312.5" width="50" height="26"/>
+				<aux name="iffy" x="529" y="126" width="46" height="26"/>
+				<connector angle="36.3175"><from>data_in</from><to>data_equation</to></connector>
+				<connector angle="359.004"><from>data_equation</from><to>aux_equation</to></connector>
+				<connector angle="359.004"><from>data_equation_hold</from><to>aux_equation_hold</to></connector>
+				<connector angle="13.586"><from>data_in</from><to>data_equation_hold</to></connector>
+				<connector angle="359.004"><from>data_equation_look</from><to>aux_equation_look</to></connector>
+				<connector angle="359.004"><from>data_equation_raw</from><to>aux_equation_raw</to></connector>
+				<connector angle="343.449"><from>data_in</from><to>data_equation_look</to></connector>
+				<connector angle="322.325"><from>data_in</from><to>data_equation_raw</to></connector>
+				<connector angle="0.267735"><from>aux_equation</from><to>iffy</to></connector>
+			</view>
+		</views>
+	</model>
+</xmile>

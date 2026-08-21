@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:vensim="http://www.vensim.com/XMILE">
+	<header>
+		<product version="1.0" lang="en">Vensim</product>
+	</header>
+	<sim_specs method="euler" time_units="Minute">
+		<start>0<doc>The initial time for the simulation.</doc></start>
+		<stop>300<doc>FINAL TIME</doc></stop>
+		<dt>0.5<doc>The time step for the simulation.</doc></dt>
+		<vensim:saveper>1<doc>The frequency with which output is stored.</doc></vensim:saveper>
+	</sim_specs>
+	<model>
+		<variables>
+			<stock name="Sugar">
+					<eqn>
+					100
+					</eqn>
+					<outflow>
+					sugar_consumption
+					</outflow>
+				<units>g</units>
+				<doc>The amount of sugar in the bowl.</doc>
+			</stock>
+			<stock name="Water">
+					<eqn>
+					100
+					</eqn>
+					<outflow>
+					water_consumption
+					</outflow>
+				<units>ml</units>
+				<doc>  The amount of water in the bowl.</doc>
+			</stock>
+			<stock name="Yeast_Count">
+					<eqn>
+					100
+					</eqn>
+					<inflow>
+					divisions
+					</inflow>
+					<outflow>
+					terminations
+					</outflow>
+				<units>Cell</units>
+				<doc>   The number of yeast.</doc>
+			</stock>
+			<aux name="average_lifetime">
+					<eqn> norm_lifetime*
+              life_from_temp_lookup( temperature/norm_temperature) *
+             life_from_water_lookup(average_water/norm_water) *
+             life_from_sugar_lookup(average_sugar/norm_sugar)					</eqn>
+				<units>Minute</units>
+				<doc>  The average length of time a yeast survives.</doc>
+			</aux>
+			<aux name="average_sugar">
+					<eqn> ZIDZ(Sugar,Yeast_Count)					</eqn>
+				<units>g/Cell</units>
+				<doc>The average amount of sugar.  Note the use of ZIDZ to prevent problems 										when Yeast Count is 0.</doc>
+			</aux>
+			<aux name="average_water">
+					<eqn>
+	 ZIDZ(Water,Yeast_Count)					</eqn>
+				<units>ml/Cell</units>
+				<doc>The average amount of water.  Note use of ZIDZ to prevent problems on 0 										yeast count.</doc>
+			</aux>
+			<aux name="division_rate">
+					<eqn> norm_division_rate *
+             division_from_temp_lookup( temperature/norm_temperature) *
+             division_from_sugar_lookup(average_sugar/norm_sugar) *
+             division_from_water_lookup(average_water/norm_water)					</eqn>
+				<units>1/Minute</units>
+				<doc>  The rate at which yeast divide.</doc>
+			</aux>
+			<flow name="divisions">
+					<eqn> Yeast_Count*division_rate					</eqn>
+				<units>Cell/Minute</units>
+				<doc></doc>
+			</flow>
+			<flow name="sugar_consumption">
+					<eqn>
+	divisions * sugar_per_division					</eqn>
+				<units>g/Minute</units>
+				<doc></doc>
+			</flow>
+			<flow name="terminations">
+					<eqn> MIN(Yeast_Count/TIME_STEP,Yeast_Count/average_lifetime)					</eqn>
+				<units>Cell/Minute</units>
+				<doc>  The rate of termination of yeast.  Using a MIN to prevent silly results on extreme 										conditions
+         integration.</doc>
+			</flow>
+			<flow name="water_consumption">
+					<eqn>
+	divisions * water_per_division					</eqn>
+				<units>ml/Minute</units>
+				<doc></doc>
+			</flow>
+			<aux name="division_from_sugar_lookup">
+<gf>
+<xscale min="0.000000" max="1.000000"/>
+<yscale min="0.000000" max="1.000000"/>
+<xpts>0.000000,1.000000</xpts>
+<ypts>0.000000,1.000000</ypts>
+</gf>
+				<units>dmnl</units>
+				<doc></doc>
+			</aux>
+			<aux name="division_from_temp_lookup">
+<gf>
+<xscale min="0.000000" max="2.000000"/>
+<yscale min="0.000000" max="1.000000"/>
+<xpts>0.000000,0.800000,1.000000,2.000000</xpts>
+<ypts>0.000000,0.000000,1.000000,1.000000</ypts>
+</gf>
+				<units>dmnl</units>
+				<doc></doc>
+			</aux>
+			<aux name="division_from_water_lookup">
+<gf>
+<xscale min="0.000000" max="1.000000"/>
+<yscale min="0.000000" max="1.000000"/>
+<xpts>0.000000,1.000000</xpts>
+<ypts>0.000000,1.000000</ypts>
+</gf>
+				<units>dmnl</units>
+				<doc></doc>
+			</aux>
+			<aux name="life_from_sugar_lookup">
+<gf>
+<xscale min="0.000000" max="1.000000"/>
+<yscale min="0.000000" max="1.000000"/>
+<xpts>0.000000,1.000000</xpts>
+<ypts>0.001000,1.000000</ypts>
+</gf>
+				<units>dmnl</units>
+				<doc></doc>
+			</aux>
+			<aux name="life_from_temp_lookup">
+<gf>
+<xscale min="0.000000" max="2.000000"/>
+<yscale min="0.000000" max="1.000000"/>
+<xpts>0.000000,1.000000,1.250000,2.000000</xpts>
+<ypts>1.000000,1.000000,0.020000,0.001000</ypts>
+</gf>
+				<units>dmnl</units>
+				<doc></doc>
+			</aux>
+			<aux name="life_from_water_lookup">
+<gf>
+<xscale min="0.000000" max="1.000000"/>
+<yscale min="0.000000" max="1.000000"/>
+<xpts>0.000000,1.000000</xpts>
+<ypts>0.001000,1.000000</ypts>
+</gf>
+				<units>dmnl</units>
+				<doc></doc>
+			</aux>
+			<aux name="norm_division_rate">
+					<eqn> 0.08					</eqn>
+				<units>1/Minute</units>
+				<doc> The normal rate of division at normal temperatures</doc>
+			</aux>
+			<aux name="norm_lifetime">
+					<eqn> 250					</eqn>
+				<units>Minute</units>
+				<doc> The normal lifetime of a cell at normal temperature.</doc>
+			</aux>
+			<aux name="norm_sugar">
+					<eqn> 0.001					</eqn>
+				<units>g/Cell</units>
+				<doc>The normal amount of sugar.</doc>
+			</aux>
+			<aux name="norm_temperature">
+					<eqn> 80					</eqn>
+				<units>degrees_farenheit</units>
+				<doc> The normal termperature used as a reference to determine division and 										termination effects.</doc>
+			</aux>
+			<aux name="norm_water">
+					<eqn> 0.001					</eqn>
+				<units>ml/Cell</units>
+				<doc>The normal amount of water for a cell.</doc>
+			</aux>
+			<aux name="RC_START_TIME">
+					<eqn> 10					</eqn>
+				<units>Minute</units>
+				<doc></doc>
+			</aux>
+			<aux name="sugar_per_division">
+					<eqn>
+	 0.001					</eqn>
+				<units>g/Cell</units>
+				<doc></doc>
+			</aux>
+			<aux name="temperature">
+					<eqn> 85					</eqn>
+				<units>degrees_farenheit</units>
+				<doc>  The temperature of the water in the bowl.</doc>
+			</aux>
+			<aux name="water_per_division">
+					<eqn>
+	 0.001					</eqn>
+				<units>ml/Cell</units>
+				<doc></doc>
+			</aux>
+			<aux vensim:kind="string" name="help_link">
+					<eqn>:IS: 'https://www.vensim.com/documentation/usr14.html'					</eqn>
+				<units>dmnl</units>
+				<doc></doc>
+			</aux>
+			<vensim:rc kind="constraint" name="cold_is_dormant">
+					<eqn>:THE CONDITION: temperature &lt; 50 :IMPLIES: 
+		divisions = 0					</eqn>
+				<units></units>
+				<doc></doc>
+			</vensim:rc>
+			<vensim:rc kind="constraint" name="drink_or_die">
+					<eqn>:THE CONDITION: Water = RC_STEP(Water,0) :AND: temperature &gt; 65
+		:IMPLIES: Yeast_Count &lt;= RC_DECAY_CHECK(1,Yeast_Count,1)					</eqn>
+				<units></units>
+				<doc></doc>
+			</vensim:rc>
+			<vensim:rc kind="constraint" name="eat_or_die">
+					<eqn>:THE CONDITION: Sugar = RC_STEP(Sugar,0) :AND: temperature &gt; 65 :IMPLIES:
+		Yeast_Count &lt;= RC_DECAY_CHECK(1,Yeast_Count,15)					</eqn>
+				<units></units>
+				<doc></doc>
+			</vensim:rc>
+			<vensim:rc kind="constraint" name="hot_is_dead">
+					<eqn>:THE CONDITION:
+	 temperature = RC_STEP(120,1):IMPLIES: Yeast_Count &lt;= RC_DECAY_CHECK(1,Yeast_Count,5)					</eqn>
+				<units></units>
+				<doc></doc>
+			</vensim:rc>
+			<vensim:rc kind="constraint" name="hunger_from_growth">
+					<eqn>:THE CONDITION: big_growth :IMPLIES:
+		Sugar &lt;= RC_DECAY_CHECK(1,Sugar,0.5,INITIAL_TIME)					</eqn>
+				<units></units>
+				<doc></doc>
+			</vensim:rc>
+			<vensim:rc kind="constraint" name="thirst_from_growth">
+					<eqn>:THE CONDITION: big_growth :IMPLIES:
+		Water &lt;= RC_DECAY_CHECK(1,Water,0.5,INITIAL_TIME)					</eqn>
+				<units></units>
+				<doc></doc>
+			</vensim:rc>
+			<vensim:rc kind="test_input" name="big_growth">
+					<eqn>:TEST INPUT: divisions = 1e+22					</eqn>
+				<units></units>
+				<doc></doc>
+			</vensim:rc>
+			<aux name="TIME_STEP">
+				<eqn>DT</eqn>
+			</aux>
+			<group name="Constraints">
+				<entity name="big_growth"/>
+				<entity name="cold_is_dormant"/>
+				<entity name="drink_or_die"/>
+				<entity name="eat_or_die"/>
+				<entity name="hot_is_dead"/>
+				<entity name="hunger_from_growth"/>
+				<entity name="RC_START_TIME"/>
+				<entity name="thirst_from_growth"/>
+			</group>
+		</variables>
+		<views>
+			<view type="stock_flow" name="1">
+				<stock name="Yeast_Count" x="300" y="92" width="40" height="20"/>
+				<aux name="division_rate" x="149" y="92" width="48" height="15"/>
+				<aux name="average_lifetime" x="453" y="94" width="62" height="15"/>
+				<aux name="temperature" x="302.5" y="230" width="48" height="15"/>
+				<stock name="Sugar" x="328" y="30" width="40" height="20"/>
+				<aux name="norm_division_rate" x="190.5" y="57" width="68" height="15"/>
+				<aux name="norm_temperature" x="304" y="243.5" width="68" height="15"/>
+				<aux name="norm_lifetime" x="490.5" y="65" width="51" height="15"/>
+				<stock name="Water" x="327" y="164" width="40" height="20"/>
+				<aux name="average_water" x="300" y="124" width="56" height="15"/>
+				<aux name="norm_water" x="304" y="201" width="45" height="15"/>
+				<aux name="norm_sugar" x="303" y="216" width="45" height="15"/>
+				<aux name="average_sugar" x="299" y="60" width="56" height="15"/>
+				<alias uid="1" x="352" y="75" width="56" height="15"><of>TIME_STEP</of></alias>
+				<aux name="division_from_sugar_lookup" x="78.5" y="27.5" width="97" height="15"/>
+				<aux name="division_from_temp_lookup" x="80.5" y="41" width="95" height="15"/>
+				<aux name="division_from_water_lookup" x="81" y="56" width="96" height="15"/>
+				<aux name="life_from_sugar_lookup" x="398.5" y="35" width="80" height="15"/>
+				<aux name="life_from_temp_lookup" x="397" y="50" width="78" height="15"/>
+				<aux name="life_from_water_lookup" x="400" y="21.5" width="80" height="15"/>
+				<aux name="sugar_per_division" x="294.5" y="10" width="68" height="15"/>
+				<aux name="water_per_division" x="306" y="187.5" width="67" height="15"/>
+				<flow name="divisions" x="232" y="92"><pts><pt x="186" y="92"/><pt x="300" y="92"/></pts></flow>
+				<flow name="terminations" x="366" y="92"><pts><pt x="300" y="92"/><pt x="411" y="92"/></pts></flow>
+				<flow name="sugar_consumption" x="258.5" y="30"><pts><pt x="328" y="30"/><pt x="210" y="30"/></pts></flow>
+				<flow name="water_consumption" x="262.5" y="161.5"><pts><pt x="327" y="164"/><pt x="222" y="161.5"/></pts></flow>
+				<connector angle="226.427"><from>Yeast_Count</from><to vensim:attach="label">divisions</to></connector>
+				<connector angle="206.731"><from>average_lifetime</from><to vensim:attach="label">terminations</to></connector>
+				<connector angle="307.536"><from>Yeast_Count</from><to vensim:attach="label">terminations</to></connector>
+				<connector angle="336.588"><from>division_rate</from><to vensim:attach="label">divisions</to></connector>
+				<connector angle="220.143"><from>norm_division_rate</from><to>division_rate</to></connector>
+				<connector angle="181.282"><from>norm_temperature</from><to>division_rate</to></connector>
+				<connector angle="181.73"><from>temperature</from><to>division_rate</to></connector>
+				<connector angle="217.716"><from>norm_lifetime</from><to>average_lifetime</to></connector>
+				<connector angle="6.2044"><from>norm_temperature</from><to>average_lifetime</to></connector>
+				<connector angle="10.8052"><from>temperature</from><to>average_lifetime</to></connector>
+				<connector angle="225.971"><from>Sugar</from><to>average_sugar</to></connector>
+				<connector angle="180.014"><from>norm_water</from><to>division_rate</to></connector>
+				<connector angle="178.948"><from>norm_sugar</from><to>division_rate</to></connector>
+				<connector angle="0.0330109"><from>norm_water</from><to>average_lifetime</to></connector>
+				<connector angle="7.80264"><from>norm_sugar</from><to>average_lifetime</to></connector>
+				<connector angle="173.425"><from>average_sugar</from><to>division_rate</to></connector>
+				<connector angle="300.982"><from><alias uid="1"/></from><to vensim:attach="valve">terminations</to></connector>
+				<connector angle="17.0305"><from>division_from_sugar_lookup</from><to>division_rate</to></connector>
+				<connector angle="24.8833"><from>division_from_temp_lookup</from><to>division_rate</to></connector>
+				<connector angle="21.5843"><from>division_from_water_lookup</from><to>division_rate</to></connector>
+				<connector angle="24.098"><from>life_from_sugar_lookup</from><to>average_lifetime</to></connector>
+				<connector angle="19.506"><from>life_from_temp_lookup</from><to>average_lifetime</to></connector>
+				<connector angle="18.897"><from>life_from_water_lookup</from><to>average_lifetime</to></connector>
+				<connector angle="98.8243"><from>Yeast_Count</from><to>average_sugar</to></connector>
+				<connector angle="4.74308"><from>average_sugar</from><to>average_lifetime</to></connector>
+				<connector angle="188.263"><from>average_water</from><to>division_rate</to></connector>
+				<connector angle="352.451"><from>average_water</from><to>average_lifetime</to></connector>
+				<connector angle="270"><from>Yeast_Count</from><to>average_water</to></connector>
+				<connector angle="124.019"><from>Water</from><to>average_water</to></connector>
+				<connector angle="114.131"><from vensim:attach="valve">divisions</from><to vensim:attach="label">sugar_consumption</to></connector>
+				<connector angle="209.055"><from>sugar_per_division</from><to vensim:attach="valve">sugar_consumption</to></connector>
+				<connector angle="161.565"><from>water_per_division</from><to vensim:attach="label">water_consumption</to></connector>
+				<connector angle="274.948"><from vensim:attach="label">divisions</from><to vensim:attach="valve">water_consumption</to></connector>
+			</view>
+			<view type="stock_flow" name="View 2">
+				<aux name="cold_is_dormant" x="197" y="69" width="75" height="30"/>
+				<alias uid="2" x="52" y="9" width="75" height="30"><of>divisions</of></alias>
+				<alias uid="3" x="46.5" y="101" width="75" height="30"><of>temperature</of></alias>
+				<aux name="drink_or_die" x="192" y="99" width="75" height="30"/>
+				<alias uid="4" x="47" y="78" width="75" height="30"><of>Yeast_Count</of></alias>
+				<aux name="eat_or_die" x="189" y="50" width="75" height="30"/>
+				<aux name="hot_is_dead" x="192" y="83.5" width="75" height="30"/>
+				<aux name="hunger_from_growth" x="203" y="13" width="75" height="30"/>
+				<alias uid="5" x="55" y="25" width="75" height="30"><of>Sugar</of></alias>
+				<aux name="thirst_from_growth" x="200.5" y="33" width="75" height="30"/>
+				<alias uid="6" x="54.5" y="65" width="75" height="30"><of>Water</of></alias>
+				<aux name="big_growth" x="117" y="10" width="75" height="30"/>
+				<alias uid="7" x="48" y="43" width="69" height="12"><of>INITIAL_TIME</of></alias>
+				<connector angle="317.53"><from><alias uid="2"/></from><to>cold_is_dormant</to></connector>
+				<connector angle="12.0037"><from><alias uid="3"/></from><to>cold_is_dormant</to></connector>
+				<connector angle="346.111"><from><alias uid="6"/></from><to>drink_or_die</to></connector>
+				<connector angle="351.759"><from><alias uid="4"/></from><to>drink_or_die</to></connector>
+				<connector angle="349.432"><from><alias uid="5"/></from><to>eat_or_die</to></connector>
+				<connector angle="19.692"><from><alias uid="3"/></from><to>eat_or_die</to></connector>
+				<connector angle="11.1547"><from><alias uid="4"/></from><to>eat_or_die</to></connector>
+				<connector angle="6.8583"><from><alias uid="3"/></from><to>hot_is_dead</to></connector>
+				<connector angle="357.828"><from><alias uid="4"/></from><to>hot_is_dead</to></connector>
+				<connector angle="358.002"><from>big_growth</from><to>hunger_from_growth</to></connector>
+				<connector angle="4.63546"><from><alias uid="5"/></from><to>hunger_from_growth</to></connector>
+				<connector angle="325.738"><from>big_growth</from><to>thirst_from_growth</to></connector>
+				<connector angle="23.4077"><from><alias uid="6"/></from><to>thirst_from_growth</to></connector>
+				<connector angle="0.691216"><from><alias uid="2"/></from><to>big_growth</to></connector>
+				<connector angle="0.787521"><from><alias uid="3"/></from><to>drink_or_die</to></connector>
+				<connector angle="17.7045"><from><alias uid="7"/></from><to>hunger_from_growth</to></connector>
+				<connector angle="3.75173"><from><alias uid="7"/></from><to>thirst_from_growth</to></connector>
+			</view>
+		</views>
+	</model>
+</xmile>
