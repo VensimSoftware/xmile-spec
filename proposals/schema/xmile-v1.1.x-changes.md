@@ -21,7 +21,7 @@ worse. The seven changes account for all 1,407.
 |---|---|---|---:|
 | 1 | vendor attributes on simple-typed elements | 1 | 36 |
 | 2 | `<doc>` on containers and on `<dim>` | 4 | 1 |
-| 3 | `<subscripts>` alias for per-variable `<dimensions>` | 3 | 0 |
+| 3 | `<model_dimensions>` for the whole-model list | 3 | 0 |
 | 4 | requirements nobody meets become optional | 9's pattern | 1,299 |
 | 5 | `<smile>` as a synonym for `<options>` | 11 | 71 |
 | 6 | `<license>` in `<header>` | 10 | 0 |
