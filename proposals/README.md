@@ -30,13 +30,14 @@ change, the Vensim extension schema, and the NVDL alternatives. They are outputs
 | [1](01-extension-mechanism.md) | An extension mechanism | Half resolved. The schema now has one; the prose does not describe it and sets no must-ignore rule. Two holes: 34 simple-typed elements take no vendor markup, and two types opt out of the attribute wildcard. |
 | [2](02-netflow.md) | `<netflow>` for a net-rate stock | Less urgent now that item 1 makes a vendor-prefixed form valid. Raises 
 questions about symmetry of treatment across features in the intersection or union of vendors. |
-| [3](03-dimensions-two-meanings.md) | `<dimensions>` means two things | Unresolved. |
+| [3](03-dimensions-two-meanings.md) | `<dimensions>` means two things | **Updated 2026-08-21.** The schema pays for the collision with an inline declaration and says so in a comment; the content models never required it. Fix: `<model_dimensions>`, after `<model_units>`. In the 1.1.x schema. |
 | [4](04-doc-on-containers.md) | Documentation has nowhere to go | Unresolved. Now measurable: `<doc>`, `<format>` and `url` on `<module>` all rejected. |
 | [5](05-schema-spec-drift.md) | Schema / specification drift | Partly resolved. 1.1 ships a new schema, and several named drifts are fixed. Expanding `<style>` moved the rest one level deeper: about 13,800 of 29,331 remaining errors are inside style blocks. Four new drifts found: `<connect2>`, `<default_format>`, `precision="full"`, and `uses_arrays/@max(imum)_dimensions`, which prose, schema and practice each spell differently. |
 | [6](06-flow-vs-aux.md) | When must a rate be a `<flow>` | Unresolved. |
 | [7](07-smile-and-vendor-neutrality.md) | Community needs over canonical form | Union or intersection? Intersection is the working rule but is not applied consistently: `<non_negative>` is in as an option, a net-flow stock is out. On built-ins, something had to be picked and the choice is fine; the ask is an identifier crosstab with conceptual rows and a column per vendor. |
 | [7a](07a-crosstab-design.md) | Designing the function crosstab | Evidence for item 7's ask, from xmutil, Vensim and PySD. All three key on (name, arity); translation into XMILE is many-to-one; coverage runs 140 names against 57; some rows have no `std` column at all. |
 | [7b](crosstab/README.md) | The crosstab, first cut | Working tables built from the spec, xmutil, Vensim, PySD and SDEverywhere: 165 concepts, 252 spellings, 226 support facts. Concepts are connected components of the asserted correspondences, not a curated list. |
+| [S](schema/xmile-v1.1.x-changes.md) | A 1.1.x schema proposal | The v1.1 schema plus six additive changes addressing items 1, 3, 4, 9's pattern, 10 and 11. Corpus errors 29,407 to 28,000; no file worse. |
 | [8](08-namespace-count.md) | Section 2.1 undercounts the namespaces | Unresolved. The schema now implements the category that 2.1 does not count. |
 | [9](09-view-attributes.md) | `<view>` attributes nobody writes | Unresolved. `name` is still rejected, and the vendor wildcard correctly does not rescue it. |
 | [10](10-licence.md) | Nowhere to put a licence | Unresolved. |
@@ -45,6 +46,7 @@ questions about symmetry of treatment across features in the intersection or uni
 | [13](13-dimension-relations.md) | Dimensions cannot be related | Unresolved. |
 | [14](14-data-vs-model-variable.md) | `<data>` describes a session | Unresolved. |
 | [15](15-identifier-namespaces-question.md) | Identifier namespaces - a question rather than a proposal | - |
+| [16](16-element-name-collisions.md) | Element names that mean more than one thing | **New 2026-08-21.** Four of them: `<dimensions>`, `<eqn>` (four meanings), `<units>`, and `<element>` vs `<elem>`. Item 3 fixes the first; the ask here is a naming rule for future additions, plus a decision on `<eqn>` on a stock. |
 | [AA](AA-suggested-process.md) | A suggested process | Not a content item. Four steps sketched on sd-tools; steps 1 and 2 are done. Step 3 needs a decision rule, step 4 a promotion rule. |
 
 ## Reading order
