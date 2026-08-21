@@ -1,0 +1,227 @@
+concept	dialect	spelling	implementation	status	notes
+abs	std	ABS	sde/c	yes	
+abs	std	ABS	sde/js	yes	
+arccos	std	ARCCOS	sde/c	yes	
+arccos	std	ARCCOS	sde/js	yes	
+arcsin	std	ARCSIN	sde/c	yes	
+arcsin	std	ARCSIN	sde/js	yes	
+arctan	std	ARCTAN	sde/c	yes	
+arctan	std	ARCTAN	sde/js	yes	
+cos	std	COS	sde/c	yes	
+cos	std	COS	sde/js	yes	
+delay	std	DELAY	sde/c	yes	
+delay	std	DELAY	sde/js	yes	
+delay1	std	DELAY1	sde/c	yes	
+delay1	std	DELAY1	sde/js	yes	
+delay3	std	DELAY3	sde/c	yes	
+delay3	std	DELAY3	sde/js	yes	
+delayn	std	DELAYN	sde/c	no	
+delayn	std	DELAYN	sde/js	no	
+dt	std	DT	sde/c	yes	
+dt	std	DT	sde/js	yes	
+exp	std	EXP	sde/c	yes	
+exp	std	EXP	sde/js	yes	
+exprnd	std	EXPRND	sde/c	no	
+exprnd	std	EXPRND	sde/js	no	
+forcst	std	FORCST	sde/c	no	
+forcst	std	FORCST	sde/js	no	
+inf	std	INF	sde/c	no	
+inf	std	INF	sde/js	no	
+init	std	INIT	sde/c	yes	
+init	std	INIT	sde/js	yes	
+int	std	INT	sde/c	yes	
+int	std	INT	sde/js	yes	
+ln	std	LN	sde/c	yes	
+ln	std	LN	sde/js	yes	
+log10	std	LOG10	sde/c	no	
+log10	std	LOG10	sde/js	no	
+lognormal	std	LOGNORMAL	sde/c	no	
+lognormal	std	LOGNORMAL	sde/js	no	
+lookup	std	LOOKUP	sde/c	yes	
+lookup	std	LOOKUP	sde/js	yes	
+lookupinv	std	LOOKUPINV	sde/c	yes	
+lookupinv	std	LOOKUPINV	sde/js	yes	
+arraymax	std	MAX	sde/c	yes	
+arraymax	std	MAX	sde/js	yes	
+mean	std	MEAN	sde/c	no	array form
+mean	std	MEAN	sde/js	no	array form
+arraymin	std	MIN	sde/c	yes	
+arraymin	std	MIN	sde/js	yes	
+normal	std	NORMAL	sde/c	no	
+normal	std	NORMAL	sde/js	no	
+npv	std	NPV	sde/c	yes	
+npv	std	NPV	sde/js	yes	
+pi	std	PI	sde/c	no	
+pi	std	PI	sde/js	no	
+poisson	std	POISSON	sde/c	no	
+poisson	std	POISSON	sde/js	no	
+previous	std	PREVIOUS	sde/c	no	
+previous	std	PREVIOUS	sde/js	no	
+pulse	std	PULSE	sde/c	no	
+pulse	std	PULSE	sde/js	no	
+ramp	std	RAMP	sde/c	yes	
+ramp	std	RAMP	sde/js	yes	
+random	std	RANDOM	sde/c	no	
+random	std	RANDOM	sde/js	no	
+rank	std	RANK	sde/c	no	array form
+rank	std	RANK	sde/js	no	array form
+self	std	SELF	sde/c	no	
+self	std	SELF	sde/js	no	
+sin	std	SIN	sde/c	yes	
+sin	std	SIN	sde/js	yes	
+size	std	SIZE	sde/c	yes	array form
+size	std	SIZE	sde/js	yes	array form
+smth1	std	SMTH1	sde/c	yes	
+smth1	std	SMTH1	sde/js	yes	
+smth3	std	SMTH3	sde/c	yes	
+smth3	std	SMTH3	sde/js	yes	
+smthn	std	SMTHN	sde/c	no	
+smthn	std	SMTHN	sde/js	no	
+sqrt	std	SQRT	sde/c	yes	
+sqrt	std	SQRT	sde/js	yes	
+initial_time	std	STARTTIME	sde/c	yes	
+initial_time	std	STARTTIME	sde/js	yes	
+stddev	std	STDDEV	sde/c	no	array form
+stddev	std	STDDEV	sde/js	no	array form
+step_x	std	STEP	sde/c	yes	
+step_x	std	STEP	sde/js	yes	
+endtime	std	STOPTIME	sde/c	yes	
+endtime	std	STOPTIME	sde/js	yes	
+arraysum	std	SUM	sde/c	yes	array form
+arraysum	std	SUM	sde/js	yes	array form
+tan	std	TAN	sde/c	yes	
+tan	std	TAN	sde/js	yes	
+time	std	TIME	sde/c	yes	
+time	std	TIME	sde/js	yes	
+trend	std	TREND	sde/c	yes	
+trend	std	TREND	sde/js	yes	
+abs	vensim	ABS	sde/c	yes	
+abs	vensim	ABS	sde/js	yes	
+init	vensim	ACTIVE INITIAL	sde/c	yes	
+init	vensim	ACTIVE INITIAL	sde/js	yes	
+allocate_available	vensim	ALLOCATE AVAILABLE	sde/c	yes	see the page's caveats
+allocate_available	vensim	ALLOCATE AVAILABLE	sde/js	no	see the page's caveats
+allocate	vensim	ALLOCATE BY PRIORITY	sde/c	yes	
+allocate	vensim	ALLOCATE BY PRIORITY	sde/js	no	
+arccos	vensim	ARCCOS	sde/c	yes	
+arccos	vensim	ARCCOS	sde/js	yes	
+arcsin	vensim	ARCSIN	sde/c	yes	
+arcsin	vensim	ARCSIN	sde/js	yes	
+arctan	vensim	ARCTAN	sde/c	yes	
+arctan	vensim	ARCTAN	sde/js	yes	
+cos	vensim	COS	sde/c	yes	
+cos	vensim	COS	sde/js	yes	
+delay	vensim	DELAY FIXED	sde/c	yes	
+delay	vensim	DELAY FIXED	sde/js	no	
+delay1	vensim	DELAY1	sde/c	yes	
+delay1	vensim	DELAY1	sde/js	yes	
+delay1	vensim	DELAY1I	sde/c	yes	
+delay1	vensim	DELAY1I	sde/js	yes	
+delay3	vensim	DELAY3	sde/c	yes	
+delay3	vensim	DELAY3	sde/js	yes	
+delay3	vensim	DELAY3I	sde/c	yes	
+delay3	vensim	DELAY3I	sde/js	yes	
+demand_at_price	vensim	DEMAND AT PRICE	sde/c	yes	
+demand_at_price	vensim	DEMAND AT PRICE	sde/js	no	
+depreciate_straightline	vensim	DEPRECIATE STRAIGHTLINE	sde/c	partial	the fisc argument is not supported
+depreciate_straightline	vensim	DEPRECIATE STRAIGHTLINE	sde/js	no	the fisc argument is not supported
+size	vensim	ELMCOUNT	sde/c	yes	
+size	vensim	ELMCOUNT	sde/js	yes	
+exp	vensim	EXP	sde/c	yes	
+exp	vensim	EXP	sde/js	yes	
+find_market_price	vensim	FIND MARKET PRICE	sde/c	yes	
+find_market_price	vensim	FIND MARKET PRICE	sde/js	no	
+game	vensim	GAME	sde/c	yes	
+game	vensim	GAME	sde/js	yes	
+gamma_ln	vensim	GAMMA LN	sde/c	yes	
+gamma_ln	vensim	GAMMA LN	sde/js	no	
+get_data_between_times	vensim	GET DATA BETWEEN TIMES	sde/c	yes	
+get_data_between_times	vensim	GET DATA BETWEEN TIMES	sde/js	yes	
+get_direct_constants	vensim	GET DIRECT CONSTANTS	sde/c	yes	
+get_direct_constants	vensim	GET DIRECT CONSTANTS	sde/js	yes	
+get_direct_data	vensim	GET DIRECT DATA	sde/c	yes	
+get_direct_data	vensim	GET DIRECT DATA	sde/js	yes	
+get_direct_lookups	vensim	GET DIRECT LOOKUPS	sde/c	yes	
+get_direct_lookups	vensim	GET DIRECT LOOKUPS	sde/js	yes	
+get_direct_subscript	vensim	GET DIRECT SUBSCRIPT	sde/c	partial	csv only, no xlsx
+get_direct_subscript	vensim	GET DIRECT SUBSCRIPT	sde/js	partial	csv only, no xlsx
+get_xls_constants	vensim	GET XLS CONSTANTS	sde/c	yes	synonym for GET DIRECT CONSTANTS
+get_xls_constants	vensim	GET XLS CONSTANTS	sde/js	yes	synonym for GET DIRECT CONSTANTS
+get_xls_data	vensim	GET XLS DATA	sde/c	yes	synonym for GET DIRECT DATA
+get_xls_data	vensim	GET XLS DATA	sde/js	yes	synonym for GET DIRECT DATA
+get_xls_lookups	vensim	GET XLS LOOKUPS	sde/c	yes	synonym for GET DIRECT LOOKUPS
+get_xls_lookups	vensim	GET XLS LOOKUPS	sde/js	yes	synonym for GET DIRECT LOOKUPS
+if_then_else	vensim	IF THEN ELSE	sde/c	yes	
+if_then_else	vensim	IF THEN ELSE	sde/js	yes	
+init	vensim	INITIAL	sde/c	yes	
+init	vensim	INITIAL	sde/js	yes	
+integ	vensim	INTEG	sde/c	yes	
+integ	vensim	INTEG	sde/js	yes	
+int	vensim	INTEGER	sde/c	yes	
+int	vensim	INTEGER	sde/js	yes	
+invert_matrix	vensim	INVERT MATRIX	sde/c	yes	
+invert_matrix	vensim	INVERT MATRIX	sde/js	yes	
+ln	vensim	LN	sde/c	yes	
+ln	vensim	LN	sde/js	yes	
+lookup_backward	vensim	LOOKUP BACKWARD	sde/c	yes	
+lookup_backward	vensim	LOOKUP BACKWARD	sde/js	yes	
+lookup_forward	vensim	LOOKUP FORWARD	sde/c	yes	
+lookup_forward	vensim	LOOKUP FORWARD	sde/js	yes	
+lookupinv	vensim	LOOKUP INVERT	sde/c	yes	
+lookupinv	vensim	LOOKUP INVERT	sde/js	yes	
+arraymax	vensim	MAX	sde/c	yes	
+arraymax	vensim	MAX	sde/js	yes	
+arraymin	vensim	MIN	sde/c	yes	
+arraymin	vensim	MIN	sde/js	yes	
+modulo	vensim	MODULO	sde/c	yes	
+modulo	vensim	MODULO	sde/js	yes	
+npv	vensim	NPV	sde/c	yes	
+npv	vensim	NPV	sde/js	yes	
+power	vensim	POWER	sde/c	yes	
+power	vensim	POWER	sde/js	yes	
+pulse_x	vensim	PULSE	sde/c	yes	
+pulse_x	vensim	PULSE	sde/js	yes	
+pulse_train	vensim	PULSE TRAIN	sde/c	yes	
+pulse_train	vensim	PULSE TRAIN	sde/js	yes	
+quantum	vensim	QUANTUM	sde/c	yes	
+quantum	vensim	QUANTUM	sde/js	yes	
+ramp_x	vensim	RAMP	sde/c	yes	
+ramp_x	vensim	RAMP	sde/js	yes	
+sample_if_true	vensim	SAMPLE IF TRUE	sde/c	yes	
+sample_if_true	vensim	SAMPLE IF TRUE	sde/js	yes	
+sin	vensim	SIN	sde/c	yes	
+sin	vensim	SIN	sde/js	yes	
+smth1	vensim	SMOOTH	sde/c	yes	
+smth1	vensim	SMOOTH	sde/js	yes	
+smth3	vensim	SMOOTH3	sde/c	yes	
+smth3	vensim	SMOOTH3	sde/js	yes	
+smth3	vensim	SMOOTH3I	sde/c	yes	
+smth3	vensim	SMOOTH3I	sde/js	yes	
+smth1	vensim	SMOOTHI	sde/c	yes	
+smth1	vensim	SMOOTHI	sde/js	yes	
+sqrt	vensim	SQRT	sde/c	yes	
+sqrt	vensim	SQRT	sde/js	yes	
+step	vensim	STEP	sde/c	yes	
+step	vensim	STEP	sde/js	yes	
+supply_at_price	vensim	SUPPLY AT PRICE	sde/c	yes	
+supply_at_price	vensim	SUPPLY AT PRICE	sde/js	no	
+tan	vensim	TAN	sde/c	yes	
+tan	vensim	TAN	sde/js	yes	
+trend	vensim	TREND	sde/c	yes	
+trend	vensim	TREND	sde/js	yes	
+vector_elm_map	vensim	VECTOR ELM MAP	sde/c	yes	
+vector_elm_map	vensim	VECTOR ELM MAP	sde/js	yes	
+vector_select	vensim	VECTOR SELECT	sde/c	partial	only numerical_action 0 (sum) and 3 (max)
+vector_select	vensim	VECTOR SELECT	sde/js	partial	only numerical_action 0 (sum) and 3 (max)
+vector_sort_order	vensim	VECTOR SORT ORDER	sde/c	yes	
+vector_sort_order	vensim	VECTOR SORT ORDER	sde/js	yes	
+arraymax	vensim	VMAX	sde/c	yes	
+arraymax	vensim	VMAX	sde/js	yes	
+arraymin	vensim	VMIN	sde/c	yes	
+arraymin	vensim	VMIN	sde/js	yes	
+with_lookup	vensim	WITH LOOKUP	sde/c	yes	
+with_lookup	vensim	WITH LOOKUP	sde/js	yes	
+safediv	vensim	XIDZ	sde/c	yes	
+safediv	vensim	XIDZ	sde/js	yes	
+safediv	vensim	ZIDZ	sde/c	yes	
+safediv	vensim	ZIDZ	sde/js	yes	

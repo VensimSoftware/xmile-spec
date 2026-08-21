@@ -73,6 +73,20 @@ when `SMTH1` means the same thing. It is also silly to require translation of so
 that was already clear, at the cost of making the language unfamiliar to a large
 population of readers.
 
+Implementations have also converged on functions the standard does not define. `SAFEDIV`
+appears nowhere in the v1.1 text: no section defines it, and division by zero is not
+discussed anywhere. Vensim emits `SAFEDIV`, xmutil emits `safediv`, and PySD parses
+`safediv`, dispatching on argument count to `zidz` or `xidz`. `WITH_LOOKUP`,
+`GET_DIRECT_DATA`, `VECTOR SELECT`, `TIME_BASE`, `DELAY_CONVEYOR` and `GET_DATA_AT_TIME`
+are in the same position, all of them written unprefixed into the XMILE namespace by
+xmutil.
+
+That cuts two ways, and both favour a table. Where the field has agreed on a function the
+standard lacks, a canonical list can record it only through a revision, while a table
+gains a row and a note. And where a tool writes an undefined name unprefixed, it is doing
+what `ai_state` does in the specification's own sample files: taking the standard's
+namespace for something the standard has never defined.
+
 §3.2.2.3 compounds this by asking every language to reserve the `std` names for collision
 avoidance. That is clutter for many languages, and a problem macros cannot solve on their
 own. Vensim, or Vensim users, must therefore reserve both SMTH and SMOOTH.
@@ -108,6 +122,10 @@ Five reasons a crosstab beats a canonical list:
   the field instead of the speed of a standards revision.
 - It is testable. A table is data, so a conformance suite can round-trip each row and
   report which mappings hold. Prose cannot be tested.
+
+[07a-crosstab-design.md](07a-crosstab-design.md) works the shape out against three
+implementations that already do this translation, and proposes how to seed each column
+from something that exists.
 
 Combined with a revamp of namespace handling this would be cleaner than what §3.2.2.3
 asks for today. A first step is a `functions.tsv` in this repository: a concept column, a

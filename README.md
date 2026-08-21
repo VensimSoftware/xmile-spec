@@ -20,6 +20,7 @@ released the way code is.
 | `models/` | Test models, in subfolders by the XMILE version they are expected to conform to. |
 | `proposals/` | Proposals for a future version, one file per item, with the schemas and evidence behind them. |
 | `archive/` | The original Word documents, kept for provenance. Not edited. |
+| `LICENSE-Ventana.md` | MIT, covering the Ventana-contributed tools, proposals and tables. Names what it does not cover. |
 
 ## Building
 

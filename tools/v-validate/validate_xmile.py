@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Ventana Systems, Inc. See LICENSE-Ventana.md.
 r"""Validate every model under /models against the XMILE schemas.
 
 Small, hand-checkable files used to pin down what the schema does and does not accept.

@@ -105,3 +105,5 @@ A schema given with a path is taken as given.
 Copied from Ventana's XMILE test tree (`VensimTest/trunk/XMILE/minimal`), where it walked
 its own directory. The changes here repoint it at `/models`, add the search path above,
 and group the run by folder.
+
+MIT, © 2026 Ventana Systems, Inc. See [LICENSE-Ventana.md](../../LICENSE-Ventana.md).

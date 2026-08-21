@@ -1,0 +1,254 @@
+concept	dialect	spelling	checked_vs_vensim	differs	notes
+allocate	pysd	AllocateByPriorityStructure			
+safediv	pysd	CallStructure(xidz)			
+safediv	pysd	CallStructure(zidz)			
+delay	pysd	DelayFixedStructure			
+delayn	pysd	DelayNStructure			
+delay1	pysd	DelayStructure(order=1)			
+delay3	pysd	DelayStructure(order=3)			
+forcst	pysd	ForecastStructure			
+init	pysd	InitialStructure			
+integ	pysd	IntegStructure			
+smthn	pysd	SmoothNStructure			
+smth1	pysd	SmoothStructure(order=1)			
+smth3	pysd	SmoothStructure(order=3)			
+trend	pysd	TrendStructure			
+abs	std	ABS			spec 3.5: 1 parameter(s)
+agecount	std	AGECOUNT	no	no	
+allocate	std	ALLOCATE	no	no	
+arccos	std	ARCCOS			spec 3.5: 1 parameter(s)
+arcsin	std	ARCSIN			spec 3.5: 1 parameter(s)
+arctan	std	ARCTAN			spec 3.5: 1 parameter(s)
+arraymax	std	ARRAYMAX	no	yes	
+arraymean	std	ARRAYMEAN	no	no	
+arraymin	std	ARRAYMIN	no	yes	
+arrayprod	std	ARRAYPROD	no	yes	
+arraystddev	std	ARRAYSTDDEV	no	no	
+arraysum	std	ARRAYSUM	no	yes	
+attrcount	std	ATTRCOUNT	no	no	
+attrmax	std	ATTRMAX	no	no	
+attrmean	std	ATTRMEAN	no	no	
+attrmin	std	ATTRMIN	no	no	
+attrstddev	std	ATTRSTDDEV	no	no	
+beta	std	BETA	no	no	vensim: conversion is code (ConvertFunction_BETA), not a rename; gap in Vensim's XMILE reader as of 2026-08-21
+binomial	std	BINOMIAL	no	no	vensim: conversion is code (ConvertFunction_BINOMIAL), not a rename
+capacity	std	CAPACITY	no	no	
+cgrowth	std	CGROWTH	no	no	
+clocktime	std	CLOCKTIME	no	no	
+combinations	std	COMBINATIONS	no	no	
+cos	std	COS			spec 3.5: 1 parameter(s)
+counter	std	COUNTER	no	no	
+ctflow	std	CTFLOW	no	no	
+ctmax	std	CTMAX	no	no	
+ctmean	std	CTMEAN	no	no	
+ctmin	std	CTMIN	no	no	
+ctstddev	std	CTSTDDEV	no	no	
+cycletime	std	CYCLETIME	no	no	
+delay	std	DELAY	no	no	spec 3.5: 2 parameter(s)
+delay1	std	DELAY1	no	no	spec 3.5: 2 parameter(s)
+delay3	std	DELAY3	no	no	spec 3.5: 2 parameter(s)
+delayn	std	DELAYN	no	no	spec 3.5: 3 parameter(s)
+delay_conveyor	std	DELAY_CONVEYOR			
+derivn	std	DERIVN	no	no	
+dt	std	DT			
+endtime	std	ENDTIME			
+endval	std	ENDVAL	no	no	
+exp	std	EXP	no	no	spec 3.5: 1 parameter(s)
+expbound	std	EXPBOUND	no	no	
+exprnd	std	EXPRND	no	no	spec 3.5: 1 parameter(s)
+factorial	std	FACTORIAL	no	no	
+endtime	std	FINAL_TIME			
+forcst	std	FORCST	yes	no	spec 3.5: 3 parameter(s); vensim: appends 0 as a trailing argument
+fv	std	FV	no	no	
+gamma	std	GAMMA	no	no	
+gammaln	std	GAMMALN	no	no	
+geometric	std	GEOMETRIC	no	no	
+get_data_at_time	std	GET_DATA_AT_TIME			
+get_data_last_time	std	GET_DATA_LAST_TIME			
+get_data_mean	std	GET_DATA_MEAN			
+get_direct_data	std	GET_DIRECT_DATA			
+history	std	HISTORY	no	no	
+inf	std	INF	no	no	
+init	std	INIT	yes	no	spec 3.5: 1 parameter(s)
+initial_time	std	INITIAL_TIME			
+int	std	INT	yes	no	spec 3.5: 1 parameter(s)
+integ	std	INTEG			
+interpolate	std	INTERPOLATE	no	yes	vensim: conversion is code (ConvertFunction_INTERPOLATE), not a rename
+invnorm	std	INVNORM	no	no	
+isnan	std	ISNAN	no	no	
+ln	std	LN			spec 3.5: 1 parameter(s)
+log10	std	LOG10	yes	no	spec 3.5: 1 parameter(s); vensim: appends 10 as a trailing argument
+logistic	std	LOGISTIC	no	no	
+logisticbount	std	LOGISTICBOUNT	no	no	
+lognormal	std	LOGNORMAL	no	no	spec 3.5: 2 parameter(s)
+lookup	std	LOOKUP	no	no	
+lookuparea	std	LOOKUPAREA	no	no	
+lookupinv	std	LOOKUPINV	no	no	
+lookupmax	std	LOOKUPMAX	no	no	
+lookupmean	std	LOOKUPMEAN	no	no	
+lookupmin	std	LOOKUPMIN	no	no	
+lookuprandom	std	LOOKUPRANDOM	no	no	
+loopscore	std	LOOPSCORE	no	no	
+matrixinvert	std	MATRIXINVERT	no	no	
+arraymax	std	MAX	no	yes	spec 3.5: 2 parameter(s)
+maxsoft	std	MAXSOFT	no	no	
+mean	std	MEAN	no	no	
+arraymin	std	MIN	no	yes	spec 3.5: 2 parameter(s)
+minsoft	std	MINSOFT	no	no	
+mlpann	std	MLPANN	no	no	
+mod	std	MOD	no	no	
+modulo	std	MODULO			
+montecarlo	std	MONTECARLO	no	no	
+nan	std	NAN	no	no	
+negbinomial	std	NEGBINOMIAL	no	no	
+normal	std	NORMAL	no	no	spec 3.5: 2 parameter(s)
+normalcdf	std	NORMALCDF	no	no	
+normalpink	std	NORMALPINK	no	no	
+npv	std	NPV	no	no	
+ostate	std	OSTATE	no	no	
+pareto	std	PARETO	no	no	
+pathscore	std	PATHSCORE	no	no	
+percent	std	PERCENT	no	no	vensim: conversion is code (ConvertFunction_PERCENT), not a rename
+percentile	std	PERCENTILE	no	no	
+permutations	std	PERMUTATIONS	no	no	
+pi	std	PI	no	no	
+pmt	std	PMT	no	no	
+poisson	std	POISSON	no	no	spec 3.5: 2 parameter(s)
+previous	std	PREVIOUS	no	no	spec 3.5: 2 parameter(s)
+proctime	std	PROCTIME	no	no	
+arrayprod	std	PROD	no	no	
+pulse	std	PULSE	no	yes	spec 3.5: 2 parameter(s); vensim: conversion is code (ConvertFunction_PULSE), not a rename
+pv	std	PV	no	no	
+ramp	std	RAMP	no	yes	spec 3.5: 2 parameter(s); vensim: conversion is code (ConvertFunction_RAMP), not a rename
+random	std	RANDOM	no	yes	spec 3.5: 2 parameter(s); vensim: conversion is code (ConvertFunction_RANDOM), not a rename
+rank	std	RANK	no	no	
+rework	std	REWORK	no	no	
+round	std	ROUND	no	yes	vensim: conversion is code (ConvertFunction_ROUND), not a rename
+runcount	std	RUNCOUNT	no	no	
+runcum	std	RUNCUM	no	no	
+runmax	std	RUNMAX	no	no	
+runmean	std	RUNMEAN	no	no	
+runmin	std	RUNMIN	no	no	
+safediv	std	SAFEDIV	yes	yes	
+self	std	SELF	no	no	
+sensiruncount	std	SENSIRUNCOUNT	no	no	
+shortestpath	std	SHORTESTPATH	no	no	
+sin	std	SIN			spec 3.5: 1 parameter(s)
+size	std	SIZE	no	yes	
+smth1	std	SMTH1	yes	no	spec 3.5: 2 parameter(s); vensim: conversion is code (ConvertFunction_SMTH1), not a rename
+smth3	std	SMTH3	yes	no	spec 3.5: 2 parameter(s); vensim: conversion is code (ConvertFunction_SMTH3), not a rename
+smthn	std	SMTHN	yes	no	spec 3.5: 3 parameter(s); vensim: conversion is code (ConvertFunction_SMTHN), not a rename
+softwareversion	std	SOFTWAREVERSION	no	no	
+sqrt	std	SQRT	no	no	spec 3.5: 1 parameter(s)
+initial_time	std	STARTTIME	no	no	
+stddev	std	STDDEV	no	no	
+step_x	std	STEP	no	no	spec 3.5: 2 parameter(s)
+endtime	std	STOPTIME	no	no	
+arraysum	std	SUM	no	no	
+systemchange	std	SYSTEMCHANGE	no	no	
+tan	std	TAN			spec 3.5: 1 parameter(s)
+throughput	std	THROUGHPUT	no	no	
+time	std	TIME			
+time_base	std	TIME_BASE			
+dt	std	TIME_STEP			
+traversalcost	std	TRAVERSALCOST	no	no	
+trend	std	TREND	yes	yes	spec 3.5: 2 parameter(s); vensim: appends 0 as a trailing argument
+triangular	std	TRIANGULAR	no	no	
+uniform	std	UNIFORM	no	no	
+vector_elm_map	std	VECTOR ELM MAP			
+vector_select	std	VECTOR SELECT			
+vector_sort_order	std	VECTOR SORT ORDER			
+vector_reorder	std	VECTOR_REORDER			
+weibull	std	WEIBULL	no	no	
+with_lookup	std	WITH_LOOKUP			
+nan	vensim	A FUNCTION OF			
+abs	vensim	ABS			
+init	vensim	ACTIVE INITIAL			
+allocate_available	vensim	ALLOCATE AVAILABLE			
+allocate	vensim	ALLOCATE BY PRIORITY			
+arccos	vensim	ARCCOS			
+arcsin	vensim	ARCSIN			
+arctan	vensim	ARCTAN			
+cos	vensim	COS			
+delay_conveyor	vensim	DELAY CONVEYOR			
+delay	vensim	DELAY FIXED			
+delayn	vensim	DELAY N			
+delay1	vensim	DELAY1			
+delay1	vensim	DELAY1I			
+delay3	vensim	DELAY3			
+delay3	vensim	DELAY3I			
+demand_at_price	vensim	DEMAND AT PRICE			
+depreciate_straightline	vensim	DEPRECIATE STRAIGHTLINE			
+size	vensim	ELMCOUNT			
+exp	vensim	EXP			
+endtime	vensim	FINAL TIME			
+find_market_price	vensim	FIND MARKET PRICE			
+forcst	vensim	FORECAST			
+game	vensim	GAME			xmutil: no XMILE form emitted
+gamma_ln	vensim	GAMMA LN			
+get_data_at_time	vensim	GET DATA AT TIME			
+get_data_between_times	vensim	GET DATA BETWEEN TIMES			
+get_data_last_time	vensim	GET DATA LAST TIME			
+get_data_mean	vensim	GET DATA MEAN			
+get_direct_constants	vensim	GET DIRECT CONSTANTS			
+get_direct_data	vensim	GET DIRECT DATA			
+get_direct_lookups	vensim	GET DIRECT LOOKUPS			
+get_direct_subscript	vensim	GET DIRECT SUBSCRIPT			
+get_xls_constants	vensim	GET XLS CONSTANTS			
+get_xls_data	vensim	GET XLS DATA			
+get_xls_lookups	vensim	GET XLS LOOKUPS			
+if_then_else	vensim	IF THEN ELSE			
+init	vensim	INITIAL			
+initial_time	vensim	INITIAL TIME			
+integ	vensim	INTEG			
+int	vensim	INTEGER			
+invert_matrix	vensim	INVERT MATRIX			
+ln	vensim	LN			
+log10	vensim	LOG			
+lookup	vensim	LOOKUP			
+lookuparea	vensim	LOOKUP AREA			
+lookup_backward	vensim	LOOKUP BACKWARD			
+lookup	vensim	LOOKUP EXTRAPOLATE			
+lookup_forward	vensim	LOOKUP FORWARD			
+lookupinv	vensim	LOOKUP INVERT			
+arraymax	vensim	MAX			
+arraymin	vensim	MIN			
+modulo	vensim	MODULO			
+npv	vensim	NPV			
+power	vensim	POWER			
+arrayprod	vensim	PROD			
+pulse_x	vensim	PULSE			
+pulse_train	vensim	PULSE TRAIN			
+quantum	vensim	QUANTUM			
+ramp_x	vensim	RAMP			
+uniform	vensim	RANDOM 0 1			
+beta	vensim	RANDOM BETA			
+normal	vensim	RANDOM NORMAL			
+normalpink	vensim	RANDOM PINK NOISE			
+uniform	vensim	RANDOM UNIFORM			
+init	vensim	REINITIAL			
+sample_if_true	vensim	SAMPLE IF TRUE			
+sin	vensim	SIN			
+smth1	vensim	SMOOTH			
+smthn	vensim	SMOOTH N			
+smth3	vensim	SMOOTH3			
+smth3	vensim	SMOOTH3I			
+smth1	vensim	SMOOTHI			
+sqrt	vensim	SQRT			
+step	vensim	STEP			
+arraysum	vensim	SUM			
+supply_at_price	vensim	SUPPLY AT PRICE			
+tan	vensim	TAN			
+time_base	vensim	TIME BASE			
+dt	vensim	TIME STEP			
+trend	vensim	TREND			
+time	vensim	Time			
+vector_elm_map	vensim	VECTOR ELM MAP			
+vector_reorder	vensim	VECTOR REORDER			
+vector_select	vensim	VECTOR SELECT			
+vector_sort_order	vensim	VECTOR SORT ORDER			
+arraymax	vensim	VMAX			
+arraymin	vensim	VMIN			
+with_lookup	vensim	WITH LOOKUP			
+safediv	vensim	XIDZ			
+safediv	vensim	ZIDZ			

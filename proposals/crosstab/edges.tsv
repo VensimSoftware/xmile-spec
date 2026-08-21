@@ -1,0 +1,121 @@
+concept	from_dialect	from	to_dialect	to	args	source
+allocate	std	ALLOCATE	pysd	AllocateByPriorityStructure		pysd/manual
+arraymax	std	ARRAYMAX	vensim	VMAX		vensim/XMILEFunctions.cpp
+arraymin	std	ARRAYMIN	vensim	VMIN		vensim/XMILEFunctions.cpp
+arrayprod	std	ARRAYPROD	vensim	PROD		vensim/XMILEFunctions.cpp
+arraysum	std	ARRAYSUM	vensim	SUM		vensim/XMILEFunctions.cpp
+beta	std	BETA	vensim	RANDOM BETA		ventana/manual
+delay	std	DELAY	pysd	DelayFixedStructure		pysd/manual
+delay	std	DELAY	vensim	DELAY FIXED		xmutil/kFuncMap
+delay1	std	DELAY1	pysd	DelayStructure(order=1)		pysd/manual
+delay1	std	DELAY1	vensim	DELAY1	2	xmutil/kArityMap
+delay1	std	DELAY1	vensim	DELAY1I	3	xmutil/kArityMap
+delay3	std	DELAY3	pysd	DelayStructure(order=3)		pysd/manual
+delay3	std	DELAY3	vensim	DELAY3	2	xmutil/kArityMap
+delay3	std	DELAY3	vensim	DELAY3I	3	xmutil/kArityMap
+delayn	std	DELAYN	pysd	DelayNStructure		pysd/manual
+delayn	std	DELAYN	vensim	DELAY N		xmutil/kFuncMap
+dt	std	DT	vensim	TIME STEP		xmutil/kFuncMap
+endtime	std	ENDTIME	vensim	FINAL TIME		xmutil/kFuncMap
+endtime	std	FINAL_TIME	vensim	FINAL TIME		xmutil/kFuncMap
+forcst	std	FORCST	pysd	ForecastStructure		pysd/manual
+forcst	std	FORCST	vensim	FORECAST		vensim/XMILEFunctions.cpp
+forcst	std	FORCST	vensim	FORECAST		xmutil/kFuncMap
+init	std	INIT	pysd	InitialStructure	1	pysd/manual
+init	std	INIT	vensim	ACTIVE INITIAL	2	xmutil/kArityMap
+init	std	INIT	vensim	INITIAL	1	xmutil/kArityMap
+initial_time	std	INITIAL_TIME	vensim	INITIAL TIME		xmutil/kFuncMap
+int	std	INT	vensim	INTEGER		vensim/XMILEFunctions.cpp
+int	std	INT	vensim	INTEGER		xmutil/kFuncMap
+integ	std	INTEG	pysd	IntegStructure		pysd/manual
+integ	std	INTEG	vensim	INTEG		xmutil/kFuncMap
+log10	std	LOG10	vensim	LOG		vensim/XMILEFunctions.cpp
+lookup	std	LOOKUP	vensim	LOOKUP		xmutil/kFuncMap
+lookupinv	std	LOOKUPINV	vensim	LOOKUP INVERT		xmutil/kFuncMap
+arraymax	std	MAX	vensim	MAX	2	xmutil/kArityMap
+arraymax	std	MAX	vensim	VMAX	1	vensim/XMILEFunctions.cpp
+arraymax	std	MAX	vensim	VMAX	1	xmutil/kArityMap
+arraymin	std	MIN	vensim	MIN	2	xmutil/kArityMap
+arraymin	std	MIN	vensim	VMIN	1	vensim/XMILEFunctions.cpp
+arraymin	std	MIN	vensim	VMIN	1	xmutil/kArityMap
+normal	std	NORMAL	vensim	RANDOM NORMAL		xmutil/kFuncMap
+normalpink	std	NORMALPINK	vensim	RANDOM PINK NOISE		xmutil/kFuncMap
+safediv	std	SAFEDIV	pysd	CallStructure(xidz)	3	pysd/manual
+safediv	std	SAFEDIV	pysd	CallStructure(zidz)	2	pysd/manual
+safediv	std	SAFEDIV	vensim	XIDZ	3	vensim/XMILEFunctions.cpp
+safediv	std	SAFEDIV	vensim	XIDZ	3	xmutil/kArityMap
+safediv	std	SAFEDIV	vensim	ZIDZ	2	vensim/XMILEFunctions.cpp
+safediv	std	SAFEDIV	vensim	ZIDZ	2	xmutil/kArityMap
+size	std	SIZE	vensim	ELMCOUNT		vensim/XMILEFunctions.cpp
+size	std	SIZE	vensim	ELMCOUNT		xmutil/kFuncMap
+smth1	std	SMTH1	pysd	SmoothStructure(order=1)	2	pysd/manual
+smth1	std	SMTH1	pysd	SmoothStructure(order=1)	3	pysd/manual
+smth1	std	SMTH1	vensim	SMOOTH	2	xmutil/kArityMap
+smth1	std	SMTH1	vensim	SMOOTHI	3	xmutil/kArityMap
+smth3	std	SMTH3	pysd	SmoothStructure(order=3)		pysd/manual
+smth3	std	SMTH3	vensim	SMOOTH3	2	xmutil/kArityMap
+smth3	std	SMTH3	vensim	SMOOTH3I	3	xmutil/kArityMap
+smthn	std	SMTHN	pysd	SmoothNStructure		pysd/manual
+smthn	std	SMTHN	vensim	SMOOTH N		xmutil/kFuncMap
+initial_time	std	STARTTIME	vensim	INITIAL TIME		xmutil/kFuncMap
+endtime	std	STOPTIME	vensim	FINAL TIME		xmutil/kFuncMap
+time	std	TIME	vensim	Time		xmutil/kFuncMap
+dt	std	TIME_STEP	vensim	TIME STEP		xmutil/kFuncMap
+trend	std	TREND	pysd	TrendStructure		pysd/manual
+uniform	std	UNIFORM	vensim	RANDOM UNIFORM		xmutil/kFuncMap
+nan	vensim	A FUNCTION OF	std	NAN		xmutil/Function.h
+abs	vensim	ABS	std	ABS	1	xmutil/Function.h
+allocate	vensim	ALLOCATE BY PRIORITY	std	ALLOCATE	5	xmutil/Function.h
+arccos	vensim	ARCCOS	std	ARCCOS	1	xmutil/Function.h
+arcsin	vensim	ARCSIN	std	ARCSIN	1	xmutil/Function.h
+arctan	vensim	ARCTAN	std	ARCTAN	1	xmutil/Function.h
+cos	vensim	COS	std	COS	1	xmutil/Function.h
+delay_conveyor	vensim	DELAY CONVEYOR	std	DELAY_CONVEYOR	6	xmutil/Function.h
+delay	vensim	DELAY FIXED	std	DELAY	3	xmutil/Function.h
+delayn	vensim	DELAY N	std	DELAYN	4	xmutil/Function.h
+delay1	vensim	DELAY1	std	DELAY1	2	xmutil/Function.h
+delay1	vensim	DELAY1I	std	DELAY1	3	xmutil/Function.h
+delay3	vensim	DELAY3	std	DELAY3	2	xmutil/Function.h
+delay3	vensim	DELAY3I	std	DELAY3	3	xmutil/Function.h
+size	vensim	ELMCOUNT	std	SIZE	1	xmutil/Function.h
+exp	vensim	EXP	std	EXP	1	xmutil/Function.h
+forcst	vensim	FORECAST	std	FORCST	3	xmutil/Function.h
+get_data_at_time	vensim	GET DATA AT TIME	std	GET_DATA_AT_TIME	2	xmutil/Function.h
+get_data_last_time	vensim	GET DATA LAST TIME	std	GET_DATA_LAST_TIME	1	xmutil/Function.h
+get_data_mean	vensim	GET DATA MEAN	std	GET_DATA_MEAN	3	xmutil/Function.h
+get_direct_data	vensim	GET DIRECT DATA	std	GET_DIRECT_DATA	4	xmutil/Function.h
+init	vensim	INITIAL	std	INIT	1	xmutil/Function.h
+int	vensim	INTEGER	std	INT	1	xmutil/Function.h
+ln	vensim	LN	std	LN	1	xmutil/Function.h
+lookuparea	vensim	LOOKUP AREA	std	LOOKUPAREA	3	xmutil/Function.h
+lookup	vensim	LOOKUP EXTRAPOLATE	std	LOOKUP	2	xmutil/Function.h
+lookupinv	vensim	LOOKUP INVERT	std	LOOKUPINV	2	xmutil/Function.h
+arraymax	vensim	MAX	std	MAX	2	xmutil/Function.h
+arraymin	vensim	MIN	std	MIN	2	xmutil/Function.h
+modulo	vensim	MODULO	std	MODULO	2	xmutil/Function.h
+npv	vensim	NPV	std	NPV	4	xmutil/Function.h
+arrayprod	vensim	PROD	std	PROD	1	xmutil/Function.h
+uniform	vensim	RANDOM 0 1	std	UNIFORM	0	xmutil/Function.h
+normalpink	vensim	RANDOM PINK NOISE	std	NORMALPINK	4	xmutil/Function.h
+uniform	vensim	RANDOM UNIFORM	std	UNIFORM	3	xmutil/Function.h
+init	vensim	REINITIAL	std	INIT	1	xmutil/Function.h
+sin	vensim	SIN	std	SIN	1	xmutil/Function.h
+smth1	vensim	SMOOTH	std	SMTH1	2	xmutil/Function.h
+smthn	vensim	SMOOTH N	std	SMTHN	4	xmutil/Function.h
+smth3	vensim	SMOOTH3	std	SMTH3	2	xmutil/Function.h
+smth3	vensim	SMOOTH3I	std	SMTH3	3	xmutil/Function.h
+smth1	vensim	SMOOTHI	std	SMTH1	3	xmutil/Function.h
+sqrt	vensim	SQRT	std	SQRT	1	xmutil/Function.h
+arraysum	vensim	SUM	std	SUM	1	xmutil/Function.h
+tan	vensim	TAN	std	TAN	1	xmutil/Function.h
+time_base	vensim	TIME BASE	std	TIME_BASE	2	xmutil/Function.h
+trend	vensim	TREND	std	TREND	3	xmutil/Function.h
+vector_elm_map	vensim	VECTOR ELM MAP	std	VECTOR ELM MAP	2	xmutil/Function.h
+vector_reorder	vensim	VECTOR REORDER	std	VECTOR_REORDER	2	xmutil/Function.h
+vector_select	vensim	VECTOR SELECT	std	VECTOR SELECT	5	xmutil/Function.h
+vector_sort_order	vensim	VECTOR SORT ORDER	std	VECTOR SORT ORDER	2	xmutil/Function.h
+arraymax	vensim	VMAX	std	MAX	1	xmutil/Function.h
+arraymin	vensim	VMIN	std	MIN	1	xmutil/Function.h
+with_lookup	vensim	WITH LOOKUP	std	WITH_LOOKUP	3	xmutil/Function.h
+safediv	vensim	XIDZ	std	SAFEDIV	3	xmutil/Function.h
+safediv	vensim	ZIDZ	std	SAFEDIV	2	xmutil/Function.h

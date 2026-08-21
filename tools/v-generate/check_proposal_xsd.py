@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Ventana Systems, Inc. See LICENSE-Ventana.md.
 """Validate xmile-v1.x-proposal.xsd: it must accept everything the published
 schema accepts, plus vendor extensions, and must still reject junk."""
 import glob, os, sys

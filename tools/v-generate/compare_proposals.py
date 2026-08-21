@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Ventana Systems, Inc. See LICENSE-Ventana.md.
 """Compare the XSD 1.0 and XSD 1.1 forms of the vendor-extension proposal.
 
     py -3.12 compare_proposals.py

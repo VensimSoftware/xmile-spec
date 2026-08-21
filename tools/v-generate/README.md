@@ -69,3 +69,5 @@ unrelated and both are in play here.
 Copied from Ventana's XMILE test tree (`VensimTest/trunk/XMILE/minimal`). The only
 changes repoint input, output and corpus at this repository's layout; regenerating
 produces files byte-identical to the ones copied across.
+
+MIT, © 2026 Ventana Systems, Inc. See [LICENSE-Ventana.md](../../LICENSE-Ventana.md).

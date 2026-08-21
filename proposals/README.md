@@ -14,6 +14,11 @@ was written (2026-07-30), and how it stands against the schema added to this rep
 on 2026-08-18. `00-corpus-validation.md` holds the evidence for the second line, and the
 numbers quoted in the items come from there.
 
+The text and tables here are MIT, © 2026 Ventana Systems, Inc.; see
+[LICENSE-Ventana.md](../LICENSE-Ventana.md), which also records what is not ours to
+license — the generated schemas derive from the OASIS schema, and `models/` holds
+third-party models.
+
 `schema/` holds the schemas a proposal generated: three forms of the vendor-extension
 change, the Vensim extension schema, and the NVDL alternatives. They are outputs of
 `tools/v-generate/`, not hand-edited, and `tools/v-validate/` finds them by name.
@@ -30,6 +35,8 @@ questions about symmetry of treatment across features in the intersection or uni
 | [5](05-schema-spec-drift.md) | Schema / specification drift | Partly resolved. 1.1 ships a new schema, and several named drifts are fixed. Expanding `<style>` moved the rest one level deeper: about 13,800 of 29,331 remaining errors are inside style blocks. Four new drifts found: `<connect2>`, `<default_format>`, `precision="full"`, and `uses_arrays/@max(imum)_dimensions`, which prose, schema and practice each spell differently. |
 | [6](06-flow-vs-aux.md) | When must a rate be a `<flow>` | Unresolved. |
 | [7](07-smile-and-vendor-neutrality.md) | Community needs over canonical form | Union or intersection? Intersection is the working rule but is not applied consistently: `<non_negative>` is in as an option, a net-flow stock is out. On built-ins, something had to be picked and the choice is fine; the ask is an identifier crosstab with conceptual rows and a column per vendor. |
+| [7a](07a-crosstab-design.md) | Designing the function crosstab | Evidence for item 7's ask, from xmutil, Vensim and PySD. All three key on (name, arity); translation into XMILE is many-to-one; coverage runs 140 names against 57; some rows have no `std` column at all. |
+| [7b](crosstab/README.md) | The crosstab, first cut | Working tables built from the spec, xmutil, Vensim, PySD and SDEverywhere: 165 concepts, 252 spellings, 226 support facts. Concepts are connected components of the asserted correspondences, not a curated list. |
 | [8](08-namespace-count.md) | Section 2.1 undercounts the namespaces | Unresolved. The schema now implements the category that 2.1 does not count. |
 | [9](09-view-attributes.md) | `<view>` attributes nobody writes | Unresolved. `name` is still rejected, and the vendor wildcard correctly does not rescue it. |
 | [10](10-licence.md) | Nowhere to put a licence | Unresolved. |

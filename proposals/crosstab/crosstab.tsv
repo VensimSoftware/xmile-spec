@@ -1,0 +1,166 @@
+concept	std	vensim	pysd	args_seen	notes
+abs	ABS	ABS		1	spec 3.5: 1 parameter(s)
+agecount	AGECOUNT				
+allocate	ALLOCATE	ALLOCATE BY PRIORITY	AllocateByPriorityStructure	5	
+allocate_available		ALLOCATE AVAILABLE			
+arccos	ARCCOS	ARCCOS		1	spec 3.5: 1 parameter(s)
+arcsin	ARCSIN	ARCSIN		1	spec 3.5: 1 parameter(s)
+arctan	ARCTAN	ARCTAN		1	spec 3.5: 1 parameter(s)
+arraymax	ARRAYMAX | MAX	MAX | VMAX		1,2	spec 3.5: 2 parameter(s)
+arraymean	ARRAYMEAN				
+arraymin	ARRAYMIN | MIN	MIN | VMIN		1,2	spec 3.5: 2 parameter(s)
+arrayprod	ARRAYPROD | PROD	PROD		1	
+arraystddev	ARRAYSTDDEV				
+arraysum	ARRAYSUM | SUM	SUM		1	
+attrcount	ATTRCOUNT				
+attrmax	ATTRMAX				
+attrmean	ATTRMEAN				
+attrmin	ATTRMIN				
+attrstddev	ATTRSTDDEV				
+beta	BETA	RANDOM BETA			gap in Vensim's XMILE reader as of 2026-08-21; vensim: conversion is code (ConvertFunction_BETA), not a rename
+binomial	BINOMIAL				vensim: conversion is code (ConvertFunction_BINOMIAL), not a rename
+capacity	CAPACITY				
+cgrowth	CGROWTH				
+clocktime	CLOCKTIME				
+combinations	COMBINATIONS				
+cos	COS	COS		1	spec 3.5: 1 parameter(s)
+counter	COUNTER				
+ctflow	CTFLOW				
+ctmax	CTMAX				
+ctmean	CTMEAN				
+ctmin	CTMIN				
+ctstddev	CTSTDDEV				
+cycletime	CYCLETIME				
+delay	DELAY	DELAY FIXED	DelayFixedStructure	3	spec 3.5: 2 parameter(s)
+delay1	DELAY1	DELAY1 | DELAY1I	DelayStructure(order=1)	2,3	spec 3.5: 2 parameter(s)
+delay3	DELAY3	DELAY3 | DELAY3I	DelayStructure(order=3)	2,3	spec 3.5: 2 parameter(s)
+delay_conveyor	DELAY_CONVEYOR	DELAY CONVEYOR		6	
+delayn	DELAYN	DELAY N	DelayNStructure	4	spec 3.5: 3 parameter(s)
+demand_at_price		DEMAND AT PRICE			
+depreciate_straightline		DEPRECIATE STRAIGHTLINE			
+derivn	DERIVN				
+dt	DT | TIME_STEP	TIME STEP			
+endtime	ENDTIME | FINAL_TIME | STOPTIME	FINAL TIME			
+endval	ENDVAL				
+exp	EXP	EXP		1	spec 3.5: 1 parameter(s)
+expbound	EXPBOUND				
+exprnd	EXPRND				spec 3.5: 1 parameter(s)
+factorial	FACTORIAL				
+find_market_price		FIND MARKET PRICE			
+forcst	FORCST	FORECAST	ForecastStructure	3	spec 3.5: 3 parameter(s); vensim: appends 0 as a trailing argument
+fv	FV				
+game		GAME			xmutil: no XMILE form emitted
+gamma	GAMMA				
+gamma_ln		GAMMA LN			
+gammaln	GAMMALN				
+geometric	GEOMETRIC				
+get_data_at_time	GET_DATA_AT_TIME	GET DATA AT TIME		2	
+get_data_between_times		GET DATA BETWEEN TIMES			
+get_data_last_time	GET_DATA_LAST_TIME	GET DATA LAST TIME		1	
+get_data_mean	GET_DATA_MEAN	GET DATA MEAN		3	
+get_direct_constants		GET DIRECT CONSTANTS			
+get_direct_data	GET_DIRECT_DATA	GET DIRECT DATA		4	
+get_direct_lookups		GET DIRECT LOOKUPS			
+get_direct_subscript		GET DIRECT SUBSCRIPT			
+get_xls_constants		GET XLS CONSTANTS			
+get_xls_data		GET XLS DATA			
+get_xls_lookups		GET XLS LOOKUPS			
+history	HISTORY				
+if_then_else		IF THEN ELSE			
+inf	INF				
+init	INIT	ACTIVE INITIAL | INITIAL | REINITIAL	InitialStructure	1,2	spec 3.5: 1 parameter(s)
+initial_time	INITIAL_TIME | STARTTIME	INITIAL TIME			
+int	INT	INTEGER		1	spec 3.5: 1 parameter(s)
+integ	INTEG	INTEG	IntegStructure		
+interpolate	INTERPOLATE				vensim: conversion is code (ConvertFunction_INTERPOLATE), not a rename
+invert_matrix		INVERT MATRIX			
+invnorm	INVNORM				
+isnan	ISNAN				
+ln	LN	LN		1	spec 3.5: 1 parameter(s)
+log10	LOG10	LOG			spec 3.5: 1 parameter(s); vensim: appends 10 as a trailing argument
+logistic	LOGISTIC				
+logisticbount	LOGISTICBOUNT				
+lognormal	LOGNORMAL				spec 3.5: 2 parameter(s)
+lookup	LOOKUP	LOOKUP | LOOKUP EXTRAPOLATE		2	
+lookup_backward		LOOKUP BACKWARD			
+lookup_forward		LOOKUP FORWARD			
+lookuparea	LOOKUPAREA	LOOKUP AREA		3	
+lookupinv	LOOKUPINV	LOOKUP INVERT		2	
+lookupmax	LOOKUPMAX				
+lookupmean	LOOKUPMEAN				
+lookupmin	LOOKUPMIN				
+lookuprandom	LOOKUPRANDOM				
+loopscore	LOOPSCORE				
+matrixinvert	MATRIXINVERT				
+maxsoft	MAXSOFT				
+mean	MEAN				
+minsoft	MINSOFT				
+mlpann	MLPANN				
+mod	MOD				
+modulo	MODULO	MODULO		2	
+montecarlo	MONTECARLO				
+nan	NAN	A FUNCTION OF			
+negbinomial	NEGBINOMIAL				
+normal	NORMAL	RANDOM NORMAL			spec 3.5: 2 parameter(s)
+normalcdf	NORMALCDF				
+normalpink	NORMALPINK	RANDOM PINK NOISE		4	
+npv	NPV	NPV		4	
+ostate	OSTATE				
+pareto	PARETO				
+pathscore	PATHSCORE				
+percent	PERCENT				vensim: conversion is code (ConvertFunction_PERCENT), not a rename
+percentile	PERCENTILE				
+permutations	PERMUTATIONS				
+pi	PI				
+pmt	PMT				
+poisson	POISSON				spec 3.5: 2 parameter(s)
+power		POWER			
+previous	PREVIOUS				spec 3.5: 2 parameter(s)
+proctime	PROCTIME				
+pulse	PULSE				spec 3.5: 2 parameter(s); vensim: conversion is code (ConvertFunction_PULSE), not a rename
+pulse_train		PULSE TRAIN			
+pulse_x		PULSE			
+pv	PV				
+quantum		QUANTUM			
+ramp	RAMP				spec 3.5: 2 parameter(s); vensim: conversion is code (ConvertFunction_RAMP), not a rename
+ramp_x		RAMP			
+random	RANDOM				spec 3.5: 2 parameter(s); vensim: conversion is code (ConvertFunction_RANDOM), not a rename
+rank	RANK				
+rework	REWORK				
+round	ROUND				vensim: conversion is code (ConvertFunction_ROUND), not a rename
+runcount	RUNCOUNT				
+runcum	RUNCUM				
+runmax	RUNMAX				
+runmean	RUNMEAN				
+runmin	RUNMIN				
+safediv	SAFEDIV	XIDZ | ZIDZ	CallStructure(xidz) | CallStructure(zidz)	2,3	
+sample_if_true		SAMPLE IF TRUE			
+self	SELF				
+sensiruncount	SENSIRUNCOUNT				
+shortestpath	SHORTESTPATH				
+sin	SIN	SIN		1	spec 3.5: 1 parameter(s)
+size	SIZE	ELMCOUNT		1	
+smth1	SMTH1	SMOOTH | SMOOTHI	SmoothStructure(order=1)	2,3	spec 3.5: 2 parameter(s); vensim: conversion is code (ConvertFunction_SMTH1), not a rename
+smth3	SMTH3	SMOOTH3 | SMOOTH3I	SmoothStructure(order=3)	2,3	spec 3.5: 2 parameter(s); vensim: conversion is code (ConvertFunction_SMTH3), not a rename
+smthn	SMTHN	SMOOTH N	SmoothNStructure	4	spec 3.5: 3 parameter(s); vensim: conversion is code (ConvertFunction_SMTHN), not a rename
+softwareversion	SOFTWAREVERSION				
+sqrt	SQRT	SQRT		1	spec 3.5: 1 parameter(s)
+stddev	STDDEV				
+step		STEP			
+step_x	STEP				spec 3.5: 2 parameter(s)
+supply_at_price		SUPPLY AT PRICE			
+systemchange	SYSTEMCHANGE				
+tan	TAN	TAN		1	spec 3.5: 1 parameter(s)
+throughput	THROUGHPUT				
+time	TIME	Time			
+time_base	TIME_BASE	TIME BASE		2	
+traversalcost	TRAVERSALCOST				
+trend	TREND	TREND	TrendStructure	3	spec 3.5: 2 parameter(s); vensim: appends 0 as a trailing argument
+triangular	TRIANGULAR				
+uniform	UNIFORM	RANDOM 0 1 | RANDOM UNIFORM		0,3	
+vector_elm_map	VECTOR ELM MAP	VECTOR ELM MAP		2	
+vector_reorder	VECTOR_REORDER	VECTOR REORDER		2	
+vector_select	VECTOR SELECT	VECTOR SELECT		5	
+vector_sort_order	VECTOR SORT ORDER	VECTOR SORT ORDER		2	
+weibull	WEIBULL				
+with_lookup	WITH_LOOKUP	WITH LOOKUP		3	

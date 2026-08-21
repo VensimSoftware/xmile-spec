@@ -1,0 +1,166 @@
+concept	xmile std	stella	vensim	pysd	sde	xmutil
+abs	ABS		ABS		C+JS	to XMILE
+agecount		AGECOUNT				
+allocate		ALLOCATE	ALLOCATE BY PRIORITY	AllocateByPriorityStructure	C only	to XMILE
+allocate_available			ALLOCATE AVAILABLE		C only	
+arccos	ARCCOS		ARCCOS		C+JS	to XMILE
+arcsin	ARCSIN		ARCSIN		C+JS	to XMILE
+arctan	ARCTAN		ARCTAN		C+JS	to XMILE
+arraymax	MAX	ARRAYMAX	MAX | VMAX		C+JS	both ways
+arraymean		ARRAYMEAN				
+arraymin	MIN	ARRAYMIN	MIN | VMIN		C+JS	both ways
+arrayprod		ARRAYPROD | PROD	PROD			to XMILE
+arraystddev		ARRAYSTDDEV				
+arraysum		ARRAYSUM | SUM	SUM		C+JS	to XMILE
+attrcount		ATTRCOUNT				
+attrmax		ATTRMAX				
+attrmean		ATTRMEAN				
+attrmin		ATTRMIN				
+attrstddev		ATTRSTDDEV				
+beta		BETA	RANDOM BETA			
+binomial		BINOMIAL				
+capacity		CAPACITY				
+cgrowth		CGROWTH				
+clocktime		CLOCKTIME				
+combinations		COMBINATIONS				
+cos	COS		COS		C+JS	to XMILE
+counter		COUNTER				
+ctflow		CTFLOW				
+ctmax		CTMAX				
+ctmean		CTMEAN				
+ctmin		CTMIN				
+ctstddev		CTSTDDEV				
+cycletime		CYCLETIME				
+delay	DELAY		DELAY FIXED	DelayFixedStructure	C only	both ways
+delay1	DELAY1		DELAY1 | DELAY1I	DelayStructure(order=1)	C+JS	both ways
+delay3	DELAY3		DELAY3 | DELAY3I	DelayStructure(order=3)	C+JS	both ways
+delay_conveyor			DELAY CONVEYOR			to XMILE (coins DELAY_CONVEYOR)
+delayn	DELAYN		DELAY N	DelayNStructure	no	both ways
+demand_at_price			DEMAND AT PRICE		C only	
+depreciate_straightline			DEPRECIATE STRAIGHTLINE		partial	
+derivn		DERIVN				
+dt	DT		TIME STEP		C+JS	to Vensim (coins TIME_STEP)
+endtime	STOPTIME		FINAL TIME		C+JS	to Vensim (coins ENDTIME, FINAL_TIME)
+endval		ENDVAL				
+exp	EXP		EXP		C+JS	to XMILE
+expbound		EXPBOUND				
+exprnd	EXPRND				no	
+factorial		FACTORIAL				
+find_market_price			FIND MARKET PRICE		C only	
+forcst	FORCST		FORECAST	ForecastStructure	no	both ways
+fv		FV				
+game			GAME		C+JS	
+gamma		GAMMA				
+gamma_ln			GAMMA LN		C only	
+gammaln		GAMMALN				
+geometric		GEOMETRIC				
+get_data_at_time			GET DATA AT TIME			to XMILE (coins GET_DATA_AT_TIME)
+get_data_between_times			GET DATA BETWEEN TIMES		C+JS	
+get_data_last_time			GET DATA LAST TIME			to XMILE (coins GET_DATA_LAST_TIME)
+get_data_mean			GET DATA MEAN			to XMILE (coins GET_DATA_MEAN)
+get_direct_constants			GET DIRECT CONSTANTS		C+JS	
+get_direct_data			GET DIRECT DATA		C+JS	to XMILE (coins GET_DIRECT_DATA)
+get_direct_lookups			GET DIRECT LOOKUPS		C+JS	
+get_direct_subscript			GET DIRECT SUBSCRIPT		partial	
+get_xls_constants			GET XLS CONSTANTS		C+JS	
+get_xls_data			GET XLS DATA		C+JS	
+get_xls_lookups			GET XLS LOOKUPS		C+JS	
+history		HISTORY				
+if_then_else			IF THEN ELSE		C+JS	
+inf	INF				no	
+init	INIT		ACTIVE INITIAL | INITIAL | REINITIAL	InitialStructure	C+JS	both ways
+initial_time	STARTTIME		INITIAL TIME		C+JS	to Vensim (coins INITIAL_TIME)
+int	INT		INTEGER		C+JS	both ways
+integ		INTEG	INTEG	IntegStructure	C+JS	to Vensim
+interpolate		INTERPOLATE				
+invert_matrix			INVERT MATRIX		C+JS	
+invnorm		INVNORM				
+isnan		ISNAN				
+ln	LN		LN		C+JS	to XMILE
+log10	LOG10		LOG		no	
+logistic		LOGISTIC				
+logisticbount		LOGISTICBOUNT				
+lognormal	LOGNORMAL				no	
+lookup		LOOKUP	LOOKUP | LOOKUP EXTRAPOLATE		C+JS	both ways
+lookup_backward			LOOKUP BACKWARD		C+JS	
+lookup_forward			LOOKUP FORWARD		C+JS	
+lookuparea		LOOKUPAREA	LOOKUP AREA			to XMILE
+lookupinv		LOOKUPINV	LOOKUP INVERT		C+JS	both ways
+lookupmax		LOOKUPMAX				
+lookupmean		LOOKUPMEAN				
+lookupmin		LOOKUPMIN				
+lookuprandom		LOOKUPRANDOM				
+loopscore		LOOPSCORE				
+matrixinvert		MATRIXINVERT				
+maxsoft		MAXSOFT				
+mean		MEAN			no	
+minsoft		MINSOFT				
+mlpann		MLPANN				
+mod		MOD				
+modulo			MODULO		C+JS	to XMILE (coins MODULO)
+montecarlo		MONTECARLO				
+nan		NAN	A FUNCTION OF			to XMILE
+negbinomial		NEGBINOMIAL				
+normal	NORMAL		RANDOM NORMAL		no	to Vensim
+normalcdf		NORMALCDF				
+normalpink		NORMALPINK	RANDOM PINK NOISE			both ways
+npv		NPV	NPV		C+JS	to XMILE
+ostate		OSTATE				
+pareto		PARETO				
+pathscore		PATHSCORE				
+percent		PERCENT				
+percentile		PERCENTILE				
+permutations		PERMUTATIONS				
+pi	PI				no	
+pmt		PMT				
+poisson	POISSON				no	
+power			POWER		C+JS	
+previous	PREVIOUS				no	
+proctime		PROCTIME				
+pulse	PULSE				no	
+pulse_train			PULSE TRAIN		C+JS	
+pulse_x			PULSE		C+JS	
+pv		PV				
+quantum			QUANTUM		C+JS	
+ramp	RAMP				C+JS	
+ramp_x			RAMP		C+JS	
+random	RANDOM				no	
+rank		RANK			no	
+rework		REWORK				
+round		ROUND				
+runcount		RUNCOUNT				
+runcum		RUNCUM				
+runmax		RUNMAX				
+runmean		RUNMEAN				
+runmin		RUNMIN				
+safediv		SAFEDIV	XIDZ | ZIDZ	CallStructure(xidz) | CallStructure(zidz)	C+JS	both ways
+sample_if_true			SAMPLE IF TRUE		C+JS	
+self	SELF				no	
+sensiruncount		SENSIRUNCOUNT				
+shortestpath		SHORTESTPATH				
+sin	SIN		SIN		C+JS	to XMILE
+size		SIZE	ELMCOUNT		C+JS	both ways
+smth1	SMTH1		SMOOTH | SMOOTHI	SmoothStructure(order=1)	C+JS	both ways
+smth3	SMTH3		SMOOTH3 | SMOOTH3I	SmoothStructure(order=3)	C+JS	both ways
+smthn	SMTHN		SMOOTH N	SmoothNStructure	no	both ways
+softwareversion		SOFTWAREVERSION				
+sqrt	SQRT		SQRT		C+JS	to XMILE
+stddev		STDDEV			no	
+step			STEP		C+JS	
+step_x	STEP				C+JS	
+supply_at_price			SUPPLY AT PRICE		C only	
+systemchange		SYSTEMCHANGE				
+tan	TAN		TAN		C+JS	to XMILE
+throughput		THROUGHPUT				
+time	TIME		Time		C+JS	to Vensim
+time_base			TIME BASE			to XMILE (coins TIME_BASE)
+traversalcost		TRAVERSALCOST				
+trend	TREND		TREND	TrendStructure	C+JS	to XMILE
+triangular		TRIANGULAR				
+uniform		UNIFORM	RANDOM 0 1 | RANDOM UNIFORM			both ways
+vector_elm_map			VECTOR ELM MAP		C+JS	to XMILE (coins VECTOR ELM MAP)
+vector_reorder			VECTOR REORDER			to XMILE (coins VECTOR_REORDER)
+vector_select			VECTOR SELECT		partial	to XMILE (coins VECTOR SELECT)
+vector_sort_order			VECTOR SORT ORDER		C+JS	to XMILE (coins VECTOR SORT ORDER)
+weibull		WEIBULL				
+with_lookup			WITH LOOKUP		C+JS	to XMILE (coins WITH_LOOKUP)

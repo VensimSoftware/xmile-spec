@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Ventana Systems, Inc. See LICENSE-Ventana.md.
 """Generate a vendor-extensible XMILE schema from xmile-v1.0.xsd.
 
     py -3.12 make_proposal_xsd.py            -> xmile-v1.x-proposal.xsd       (XSD 1.0)
